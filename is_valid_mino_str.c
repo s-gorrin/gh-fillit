@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/04 02:22:49 by snake             #+#    #+#             */
-/*   Updated: 2018/04/04 02:23:25 by snake            ###   ########.fr       */
+/*   Created: 2018/04/04 15:57:33 by sgorrin           #+#    #+#             */
+/*   Updated: 2018/04/04 15:57:41 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
 
 static int	char_checker(char *mino, int index)
 {
@@ -38,6 +40,11 @@ static int	char_checker(char *mino, int index)
 		return (-1);
 	return (1);
 }
+
+/*
+** This is basically the same as the function in fill_etc.
+** It has been edited for clarity (to me, I guess) and to pass Norminette.
+*/
 
 int		is_valid_mino_str(char *minostr, int mindex)
 {
