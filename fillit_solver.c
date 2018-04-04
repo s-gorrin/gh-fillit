@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 05:15:37 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/04 05:51:27 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/04 08:44:28 by ssnelgro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,23 @@ char                *fill_newsquare(int size)
     return (square);
 }
 
-int                 fillit_solve()
+int                 fillit_solve(t_minos **mino, int numofminos)
 {
     t_minos         **minolist;
     t_fillsquare    *square;
+    int             squarenum;
 
-    square = fill_newsquare(fill_smallestsquare(numofminos));
-
+    squarenum = fill_smallestsquare(numofminos)
+    square = fill_newsquare(squarenum);
+    while (!fill_movement(square, squarenum, 0))
+    {
+        squarenum++;
+        square = fill_newsquare(squarenum);
+    }
 }
 
-int                 fill_movement(t_fillsquare *square, int index)
+int                 fill_movement(t_fillsquare *square, int squarenum, int index)
 {
+    if (square[index] == "\n")
 
 }
