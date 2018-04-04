@@ -6,12 +6,17 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:30:56 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/04 05:01:22 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/04 21:57:53 by ssnelgro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+** @Function: checks to see if char c is a valid minofile char.
+** @Param1: the char to check
+** @Return: returns 1 if it is a minofile char, 0 if not.
+*/
 int                 isvalidchar(char c)
 {
     char    *valid;
@@ -23,6 +28,10 @@ int                 isvalidchar(char c)
     return (0);
 }
 
+/*
+** @Function: takes a minofilestr and an index to that string and checks that
+** it follows the rules of a mino.
+*/
 int                 isvalidminostr(char *minostr, int minoix)
 {
     char    *mino;
@@ -65,6 +74,11 @@ int                 isvalidminostr(char *minostr, int minoix)
     return (0);
 }
 
+/*
+** @Function: gets the minofile string from the file.
+** @Param: The path of the file (From argv)
+** @Return: The full contents of the minostr file.
+*/
 char                *getminofilechar(char *filepath)
 {
     char        *minofile;
@@ -81,6 +95,12 @@ char                *getminofilechar(char *filepath)
     return(minofile);
 }
 
+/*
+** @Function: from a valid minostr, turn it into a valid t_mino string.
+** @Param1: The minofile string.
+** @Param2: The index of the minofile
+** @Return: A valid t_mino or NULL if not valid.
+*/
 t_mino              *minostrtomino(char *minofile,int index)
 {
     t_mino  *finalmino;
@@ -98,14 +118,37 @@ t_mino              *minostrtomino(char *minofile,int index)
     {
         if (mino[hashes] == '#')
         {
-            finalmino[i] = ft_itoa(hashes);
+            finalmino[i] += hashes;
             i++;
         }
         hashes++;
     }
-    return (finalmino);
+    return (fill_checkminoagainstref(finalmino));
 }
 
+/*
+** @Function: checks against a list of ref pieces
+** @Param: The t_mino to check against the ref list
+** @Return: NULL if invalid, itself if valid
+*/
+t_mino              *fill_checkminoagainstref(t_mino *minotocheck);
+{
+    if (isrefmino(minotocheck))
+    {
+       return (minotocheck);
+    }
+    else
+    {
+        return (NULL);
+    }
+}
+
+/*
+** @Function: Opens a file, and gets an array of valid t_mino pointers.
+** If any part of the file is invalid, we free everything up and return NULL
+** @Param1: The path to the file (Gotten from argv in main)
+** @Return: Returns an array of valid, ref-justed t_mino pointers.
+*/
 t_mino              **fill_getminofromfile(char *filepath)
 {
     t_mino  **minosfromfile;
@@ -125,7 +168,10 @@ t_mino              **fill_getminofromfile(char *filepath)
             index += MINO_STR_LEN;
         }
         else
+        {
+            //I may need to free stuff up in here.
             return (NULL);
+        }
     }
     minosfromfile[index / MINO_STR_LEN] = '\0';
     return (minosfromfile);
