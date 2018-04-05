@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/04 15:52:12 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/04 18:16:32 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,24 @@ char	*one_first(char *mstr, int i)
 	if (mstr[i + 2] == '#')
 	{
 		if (mstr[i + 3] == '#')
-			return ({1,2,3,0});
+			return ({0,1,2,3,0});
 		if (mstr[i + 5] == '#')
-			return ({1,2,5,0});
+			return ({0,1,2,5,0});
 		if (mstr[i + 6] == '#')
-			return ({1,2,5,0});
+			return ({0,1,2,6,0});
 		if (mstr[i + 7] == '#')
-			return ({1,2,7,0});
+			return ({0,1,2,7,0});
 	}
 	if (mstr[i + 4] == '#' && mstr[i + 5] == '#')
-		return ({1,4,5,0});
+		return ({1,2,5,6,0});
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
-		return ({1,5,6,0});
+		return ({0,1,5,6,0});
 	if (mstr[1 + 5] == '#' && mstr[i + 10] == '#')
-		return ({1,5,10,0});
+		return ({0,1,5,10,0});
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
-		return ({1,6,7,0});
+		return ({0,1,6,7,0});
 	if (mstr[1 + 6] == '#' && mstr[i + 11] == '#')
-		return ({1,6,11,0});
+		return ({0,1,6,11,0});
 	else
 		return (NULL);
 }
@@ -70,11 +70,11 @@ char	*one_first(char *mstr, int i)
 char	*four_first(char *mstr, int i)
 {
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
-		return ({4,5,6,0});
+		return ({1,5,6,7,0});
 	if (mstr[i + 5] == '#' && mstr[i + 9] == '#')
-		return ({4,5,9,0});
+		return ({1,5,6,10,0});
 	if (mstr[i + 5] == '#' && mstr[i + 10] == '#')
-		return ({4,5,10,0});
+		return ({1,5,6,11,0});
 	else
 		return (NULL);
 }
@@ -82,17 +82,17 @@ char	*four_first(char *mstr, int i)
 char	*five_first(char *mstr, int i)
 {
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
-		return ({5,6,7,0});
+		return ({0,5,6,7,0});
 	if (mstr[i + 6] == '#' && mstr[i + 10] == '#')
-		return ({5,6,10,0});
+		return ({0,5,6,10,0});
 	if (mstr[i + 6] == '#' && mstr[i + 11] == '#')
-		return ({5,6,11,0});
+		return ({0,5,6,11,0});
 	if (mstr[i + 9] == '#' && mstr[i + 10] == '#')
-		return ({5,9,10,0});
+		return ({1,6,10,11,0});
 	if (mstr[i + 10] == '#' && mstr[i + 11] == '#')
-		return ({5,10,11,0});
+		return ({0,5,10,11,0});
 	if (mstr[i + 10] == '#' && mstr[i + 15] == '#')
-		return ({5,10,15,0});
+		return ({0,5,10,15,0});
 	else
 		return (NULL);
 }
@@ -101,6 +101,7 @@ char	*five_first(char *mstr, int i)
 ** Each possible piece is hard coded in as offsets from first '#' that is found.
 ** They are pushed out to different functions to pass Norminette.
 ** Return is a char *str of numbers, or NULL for invalid piece/malloc fail.
+** Return is formatted with the top left corner of the mino as place 0.
 */
 
 int	mino_id(char *minostr)
@@ -109,14 +110,14 @@ int	mino_id(char *minostr)
 	char	*ret;
 
 	i = 0;
-	if (!(ret = (char *)malloc(sizeof(*ret) * 4)))
+	if (!(ret = (char *)malloc(sizeof(*ret) * 5)))
 		return (NULL);
 	while (minostr[i] != '#')
 		i++;
 	if (minostr[i + 1] == '#')
 		ret = one_first(minostr, i);
 	else if (minostr[i + 3] == '#')
-		ret = {3,4,5,0};
+		ret = {2,5,6,7,0};
 	else if (minostr[i + 4] == '#')
 		ret = four_first(minostr, i);
 	else if (minostr[i + 5] == '#')
