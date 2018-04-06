@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:57:33 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/05 20:52:25 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/06 15:40:19 by snake            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int		is_valid_mino_str(char *minostr, int mindex)
 	int	index;
 	int	ret;
 
-	mino = (char *)malloc(sizeof(*mino) * 22);
 	mino = ft_strndup(minostr + mindex, 21);
 	mino[21] = '\0';
 	index = 0;
