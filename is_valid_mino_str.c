@@ -6,33 +6,40 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:57:33 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/04 15:57:41 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/05 19:23:39 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	char_checker(char *mino, int index)
+/*
+** @Function: checks a char mino[index] to see if it's valid, counts vars:
+** hashes, chars (per line), new line characters.
+** @Param1: string containing the char to be checked.
+** @Param2: index of the char to be checked.
+** @Return: -1 for invalidating element, 0 for valid mino, 1 for valid char.
+*/
+static int	char_checker(char *mino, int i)
 {
 	static int	hashes;
 	static int	chars;
 	static int	nls;
 
-	if (mino[index] == '.')
+	if (mino[i] == '.')
 		chars++;
-	else if (mino[index] == '#')
+	else if (mino[i] == '#')
 	{
 		hashes++;
 		if (hashes > 4)
 			return (-1);
 		chars++;
 	}
-	else if (mino[index] == '\n')
+	else if (mino[i] == '\n')
 	{
 		nls++;
 		if (chars > 4)
 			return (-1);
-		if (nls == 4 && mino[index + 1] == '\n' && index == 20)
+		if (nls == 4 && mino[i + 1] == '\n' && i == 19 && hashes == 4)
 			return (0);
 		chars = 0;
 	}
@@ -42,8 +49,12 @@ static int	char_checker(char *mino, int index)
 }
 
 /*
-** This is basically the same as the function in fill_etc.
-** It has been edited for clarity (to me, I guess) and to pass Norminette.
+** @Function: checks to see if an input mino string is valid format, including:
+** four lines of four chars, limited to '.'s and '#'s, and four total '#'s
+** and five total newline characters.
+** @Param1: minostring to be checked.
+** @Param2: index of start of mino to be checked.
+** @Return: returns 1 for valid mino format or 0 for anything invalid.
 */
 
 int		is_valid_mino_str(char *minostr, int mindex)
@@ -52,8 +63,11 @@ int		is_valid_mino_str(char *minostr, int mindex)
 	int	index;
 	int	ret;
 
-	mino = &minostr[mindex];
-	zero_vars(&hashes, &chars, &nls, &index);
+	mino = (char *)malloc(sizeof(*mino) * 22);
+	mino = ft_strndup(minostr + mindex, 21);
+	mino[21] = '\0';
+	index = 0;
+	ret = 0;
 	while (mino[index] != '\0')
 	{
 		ret = char_checker(mino, index);
@@ -64,29 +78,5 @@ int		is_valid_mino_str(char *minostr, int mindex)
 		else
 			index++;
 	}
+	return (0);
 }
-/*
-This was the first condensing rewrite before I sent it out to the static function
-I'm keeing it for now just in case.
-		if (mino[index] == '.')
-			chars++;
-		else if (mino[index] == '#')
-		{
-			hashes++;
-			if (hashes > 4)
-				return (0);
-			chars++;
-		}
-		else if (mino[index] == '\n')
-		{
-			nls++;
-			if (chars > 4)
-				return (0);
-			if (nls == 4 && mino[index + 1] == '\n' && index == 20)
-				return (1);
-			chars = 0;
-		}
-		else
-			return (0);
-*/
-
