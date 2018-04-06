@@ -6,18 +6,23 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:57:33 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/05 19:23:39 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/05 20:52:25 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+/*
+** Libraries used:
+** #include <unistd.h>
+** #include <string.h>
+** #include <stdlib.h>
+*/
 /*
 ** @Function: checks a char mino[index] to see if it's valid, counts vars:
 ** hashes, chars (per line), new line characters.
 ** @Param1: string containing the char to be checked.
 ** @Param2: index of the char to be checked.
-** @Return: -1 for invalidating element, 0 for valid mino, 1 for valid char.
+** @Return: 0 for invalidating element, 1 for valid mino, 2 for valid char.
 */
 static int	char_checker(char *mino, int i)
 {
@@ -31,21 +36,21 @@ static int	char_checker(char *mino, int i)
 	{
 		hashes++;
 		if (hashes > 4)
-			return (-1);
+			return (0);
 		chars++;
 	}
 	else if (mino[i] == '\n')
 	{
 		nls++;
 		if (chars > 4)
-			return (-1);
-		if (nls == 4 && mino[i + 1] == '\n' && i == 19 && hashes == 4)
 			return (0);
+		if (nls == 4 && mino[i + 1] == '\n' && i == 19 && hashes == 4)
+			return (1);
 		chars = 0;
 	}
 	else
-		return (-1);
-	return (1);
+		return (0);
+	return (2);
 }
 
 /*
@@ -56,7 +61,6 @@ static int	char_checker(char *mino, int i)
 ** @Param2: index of start of mino to be checked.
 ** @Return: returns 1 for valid mino format or 0 for anything invalid.
 */
-
 int		is_valid_mino_str(char *minostr, int mindex)
 {
 	char	*mino;
@@ -67,16 +71,12 @@ int		is_valid_mino_str(char *minostr, int mindex)
 	mino = ft_strndup(minostr + mindex, 21);
 	mino[21] = '\0';
 	index = 0;
-	ret = 0;
-	while (mino[index] != '\0')
+	ret = 2;
+	while (mino[index] != '\0' && ret == 2)
 	{
-		ret = char_checker(mino, index);
-		if (ret < 0)
-			return (0);
-		else if (ret == 0)
-			return (1);
-		else
-			index++;
+		ret = char_checker(mino, index);	
+		index++;
 	}
-	return (0);
+	free(mino);
+	return (ret == 1 ? 1 : 0);
 }
