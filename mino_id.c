@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/05 21:50:02 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/09 14:56:28 by snake            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,28 @@
 ** @Param2: index of first hash in the string.
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
-void	one_first(char *ret, char *mstr, int i)
+static char	*one_first(char *mstr, int i)
 {
-	if (mstr[i + 2] == '#')
-	{
-		if (mstr[i + 3] == '#')
-			ret = "\x0\x1\x2\x3\x0";
-		if (mstr[i + 5] == '#')
-			ret = "\x0\x1\x2\x5\x0";
-		if (mstr[i + 6] == '#')
-			ret = "\x0\x1\x2\x6\x0";
-		if (mstr[i + 7] == '#')
-			ret = "\x0\x1\x2\x7\x0";
-	}
+	if (mstr[i + 2] == '#' && mstr[i + 3] == '#')
+		return ("0123\0");
+	if (mstr[i + 2] == '#' && mstr[i + 5] == '#')
+		return ("0125\0");
+	if (mstr[i + 2] == '#' && mstr[i + 6] == '#')
+		return ("0126\0");
+	if (mstr[i + 2] == '#' && mstr[i + 7] == '#')
+		return ("0127\0");
 	if (mstr[i + 4] == '#' && mstr[i + 5] == '#')
-		ret = "\x1\x2\x5\x6\x0";
+		return ("1256\0");
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
-		ret = "\x0\x1\x5\x6\x0";
+		return ("0156\0");
 	if (mstr[1 + 5] == '#' && mstr[i + 10] == '#')
-		ret = "\x0\x1\x5\xA\x0";
+		return ("015A\0");
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
-		ret = "\x0\x1\x6\x7\x0";
+		return ("0167\0");
 	if (mstr[1 + 6] == '#' && mstr[i + 11] == '#')
-		ret = "\x0\x1\x6\xB\x0";
+		return ("016B\0");
 	else
-		ret = NULL;
+		 return (NULL);
 }
 
 /*
@@ -52,16 +49,16 @@ void	one_first(char *ret, char *mstr, int i)
 ** @Param2: index of first hash in the string.
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
-void	four_first(char *ret, char *mstr, int i)
+static char	*four_first(char *mstr, int i)
 {
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
-		ret = "\x1\x5\x6\x7\x0";
+		return ("1567\0");
 	if (mstr[i + 5] == '#' && mstr[i + 9] == '#')
-		ret = "\x1\x5\x6\xA\x0";
+		return ("156A\0");
 	if (mstr[i + 5] == '#' && mstr[i + 10] == '#')
-		ret = "\x1\x5\x6\xB\x0";
+		return ("156B\0");
 	else
-		ret = NULL;
+		 return (NULL);
 }
 
 /*
@@ -70,22 +67,22 @@ void	four_first(char *ret, char *mstr, int i)
 ** @Param2: index of first hash in the string.
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
-void	five_first(char *ret, char *mstr, int i)
+static char	*five_first(char *mstr, int i)
 {
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
-		ret = "\x0\x5\x6\x7\x0";
+		return ("0567\0");
 	if (mstr[i + 6] == '#' && mstr[i + 10] == '#')
-		ret = "\x0\x5\x6\xA\x0";
+	    return ("056A\0");
 	if (mstr[i + 6] == '#' && mstr[i + 11] == '#')
-		ret = "\x0\x5\x6\xB\x0";
+		return ("056B\0");
 	if (mstr[i + 9] == '#' && mstr[i + 10] == '#')
-		ret = "\x1\x6\xA\xB\x0";
+		return ("16AB\0");
 	if (mstr[i + 10] == '#' && mstr[i + 11] == '#')
-		ret = "\x0\x5\xA\xB\x0";
+		return ("05AB\0");
 	if (mstr[i + 10] == '#' && mstr[i + 15] == '#')
-		ret = "\x0\x5\xA\xF\x0";
+		return ("05AF\0");
 	else
-		ret = NULL;
+		 return (NULL);
 }
 
 /*
@@ -96,7 +93,7 @@ void	five_first(char *ret, char *mstr, int i)
 ** @Return: a char *str of hex numbers, or NULL for invalid piece/malloc fail.
 ** Return is formatted with the top left corner of the mino as place 0.
 */
-char	*mino_id(char *minostr)
+char		*mino_id(char *minostr)
 {
 	int	i;
 	char	*ret;
@@ -107,13 +104,13 @@ char	*mino_id(char *minostr)
 	while (minostr[i] != '#')
 		i++;
 	if (minostr[i + 1] == '#')
-		one_first(ret, minostr, i);
+		ret = one_first(minostr, i);
 	else if (minostr[i + 3] == '#')
-		ret = "\x2\x5\x6\x7\x0";
+		return ("2567\0");
 	else if (minostr[i + 4] == '#')
-		four_first(ret, minostr, i);
+		ret = four_first(minostr, i);
 	else if (minostr[i + 5] == '#')
-		five_first(ret, minostr, i);
+		five_first(minostr, i);
 	else
 		return (NULL);
 	return (ret);
