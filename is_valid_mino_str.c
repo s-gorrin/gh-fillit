@@ -6,11 +6,12 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:57:33 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/06 15:40:19 by snake            ###   ########.fr       */
+/*   Updated: 2018/04/10 19:16:30 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
 /*
 ** Libraries used:
 ** #include <unistd.h>
@@ -24,6 +25,7 @@
 ** @Param2: index of the char to be checked.
 ** @Return: 0 for invalidating element, 1 for valid mino, 2 for valid char.
 */
+
 static int	char_checker(char *mino, int i)
 {
 	static int	hashes;
@@ -61,11 +63,12 @@ static int	char_checker(char *mino, int i)
 ** @Param2: index of start of mino to be checked.
 ** @Return: returns 1 for valid mino format or 0 for anything invalid.
 */
-int		is_valid_mino_str(char *minostr, int mindex)
+
+int			is_valid_mino_str(char *minostr, int mindex)
 {
 	char	*mino;
-	int	index;
-	int	ret;
+	int		index;
+	int		ret;
 
 	mino = ft_strndup(minostr + mindex, 21);
 	mino[21] = '\0';
@@ -73,7 +76,7 @@ int		is_valid_mino_str(char *minostr, int mindex)
 	ret = 2;
 	while (mino[index] != '\0' && ret == 2)
 	{
-		ret = char_checker(mino, index);	
+		ret = char_checker(mino, index);
 		index++;
 	}
 	free(mino);

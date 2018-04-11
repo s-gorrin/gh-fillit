@@ -6,12 +6,11 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/09 14:56:28 by snake            ###   ########.fr       */
+/*   Updated: 2018/04/10 19:14:52 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fillit.h"
-#include <stdlib.h>
+#include "fillit.h"
 
 /*
 ** @Function: checks for pieces where second hash is at +1
@@ -19,6 +18,7 @@
 ** @Param2: index of first hash in the string.
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
+
 static char	*one_first(char *mstr, int i)
 {
 	if (mstr[i + 2] == '#' && mstr[i + 3] == '#')
@@ -40,7 +40,7 @@ static char	*one_first(char *mstr, int i)
 	if (mstr[1 + 6] == '#' && mstr[i + 11] == '#')
 		return ("016B\0");
 	else
-		 return (NULL);
+		return (NULL);
 }
 
 /*
@@ -49,6 +49,7 @@ static char	*one_first(char *mstr, int i)
 ** @Param2: index of first hash in the string.
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
+
 static char	*four_first(char *mstr, int i)
 {
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
@@ -58,7 +59,7 @@ static char	*four_first(char *mstr, int i)
 	if (mstr[i + 5] == '#' && mstr[i + 10] == '#')
 		return ("156B\0");
 	else
-		 return (NULL);
+		return (NULL);
 }
 
 /*
@@ -67,12 +68,13 @@ static char	*four_first(char *mstr, int i)
 ** @Param2: index of first hash in the string.
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
+
 static char	*five_first(char *mstr, int i)
 {
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
 		return ("0567\0");
 	if (mstr[i + 6] == '#' && mstr[i + 10] == '#')
-	    return ("056A\0");
+		return ("056A\0");
 	if (mstr[i + 6] == '#' && mstr[i + 11] == '#')
 		return ("056B\0");
 	if (mstr[i + 9] == '#' && mstr[i + 10] == '#')
@@ -82,7 +84,7 @@ static char	*five_first(char *mstr, int i)
 	if (mstr[i + 10] == '#' && mstr[i + 15] == '#')
 		return ("05AF\0");
 	else
-		 return (NULL);
+		return (NULL);
 }
 
 /*
@@ -93,9 +95,10 @@ static char	*five_first(char *mstr, int i)
 ** @Return: a char *str of hex numbers, or NULL for invalid piece/malloc fail.
 ** Return is formatted with the top left corner of the mino as place 0.
 */
+
 char		*mino_id(char *minostr)
 {
-	int	i;
+	int		i;
 	char	*ret;
 
 	i = 0;
