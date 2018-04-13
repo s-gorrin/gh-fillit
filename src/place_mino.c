@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:27:51 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 18:39:38 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/12 21:21:16 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int			place_mino(t_mino *mino, char **map, int i, int letter)
 	if (n1 < 0 || n2 < 0 || n3 < 0 || n4 < 0)
 		return (-1);
 	if ((*map)[i + n1] == '.' && (*map)[i + n2] == '.' &&
-			(*map)[i + n3] == '.' && (*map)[i + n4] == '.')
+			(*map)[i + n3] == '.' && (*map)[i + n4] == '.' &&
+			!ft_strchr(*map, letter + 'A'))
 	{
 		(*map)[i + n1] = letter + 'A';
 		(*map)[i + n2] = letter + 'A';
