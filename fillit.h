@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/04 05:38:09 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/13 05:04:29 by ssnelgro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int                 isvalidmino(t_mino *mino);
 int                 fill_smallestsquare(int nummino);
 int                 fill_movement();
 int                 fill_isvalidplacemino();
+int                 fillit_solve(t_mino **minos, char **map, int index, int next_mino)
 
 #endif
