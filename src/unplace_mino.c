@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:19:49 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 14:19:53 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/12 21:23:34 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	unplace_mino(char **map, int letter)
 	flag = 0;
 	while ((*map)[i] != '\0')
 	{
-		if ((*map)[i] == letter)
+		if ((*map)[i] == letter + 'A')
 		{
 			(*map)[i] = '.';
 			flag++;
