@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/04 05:38:09 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/12 22:22:49 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,26 @@
 # include <fcntl.h>
 # include <sys/types.h>
 
-# define BUF_SIZE 600
+# define BUFF_SIZE 600
 # define MINO_STR_LEN 21
 # define MINO_STR_LINELEN 4
 # define MINO_STR_MAXNL 5
 
-typedef char*       t_mino;
-
-typedef char*       t_fillsq;
-/*
-** File Functions
-*/
-t_mino              **fill_getminofromfile(char *minostr);
-int                 isvalidminostr(char *minostr, int minoindex);
-t_mino              strtomino(char *minostr);
-int                 isvalidmino(t_mino *mino);
+typedef char*	t_mino;
 
 /*
-** Fillit Solving Algo
+** Reading in
 */
-int                 fill_smallestsquare(int nummino);
-int                 fill_movement();
-int                 fill_isvalidplacemino();
+t_mino			**file_to_mino_list(char *file);
+int				is_valid_mino_str(char const *minostr, int mindex);
+t_mino			*mino_id(char *minostr);
+
+/*
+** Solving
+*/
+int				map_line_len(char const *map);
+int				place_mino(t_mino *mino, char **map, int i, int letter);
+int				unplace_mino(char **map, int letter);
+int				fillit_solver(t_minos **mino, int numofminos);
 
 #endif
