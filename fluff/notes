@@ -1,0 +1,14 @@
+starting map size (number of minos * number of minos plus 1 for newlines, plus one for \0):
+	map = (char *)malloc(sizeof(*map) * ((mino_count * mino_count + 1) + 1));
+
+mino adjuster, for maps bigger than 4x4:
+	for numbers 0-3, add 0
+	for numbers 5-7, add (row length - 4) (row length is before the \n)
+	for numbers 10-11, add (row length - 3)
+	for number 15, add (row length - 2)
+
+for a 2x2 map, if the piece is the square, just return the full square.
+
+for 3x3 maps (possible with two pieces):
+	5-7: subtract 1
+	10,11: subtract 2
