@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:57:33 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/10 19:16:30 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/12 14:54:25 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	char_checker(char *mino, int i)
 ** @Return: returns 1 for valid mino format or 0 for anything invalid.
 */
 
-int			is_valid_mino_str(char *minostr, int mindex)
+int			is_valid_mino_str(char const *minostr, int mindex)
 {
 	char	*mino;
 	int		index;

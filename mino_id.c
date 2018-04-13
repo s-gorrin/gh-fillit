@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/10 19:14:52 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/12 17:13:09 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
 
-static char	*one_first(char *mstr, int i)
+static t_mino	*one_first(char *mstr, int i)
 {
 	if (mstr[i + 2] == '#' && mstr[i + 3] == '#')
 		return ("0123\0");
@@ -50,7 +50,7 @@ static char	*one_first(char *mstr, int i)
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
 
-static char	*four_first(char *mstr, int i)
+static t_mino	*four_first(char *mstr, int i)
 {
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
 		return ("1567\0");
@@ -69,7 +69,7 @@ static char	*four_first(char *mstr, int i)
 ** @Return: a string of relative # locations in hex or null for invalid.
 */
 
-static char	*five_first(char *mstr, int i)
+static t_mino	*five_first(char *mstr, int i)
 {
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
 		return ("0567\0");
@@ -96,7 +96,7 @@ static char	*five_first(char *mstr, int i)
 ** Return is formatted with the top left corner of the mino as place 0.
 */
 
-char		*mino_id(char *minostr)
+t_mino			*mino_id(char *minostr)
 {
 	int		i;
 	char	*ret;
