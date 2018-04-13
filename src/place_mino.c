@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:27:51 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 21:48:58 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/12 23:11:37 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	mod_num(char const *map, int num)
 ** @Return: 1 for success, 0 for failure, -1 for invalid piece (can be removed)
 */
 
-int			place_mino(t_mino *mino, char **map, int i, int letter)
+int			place_mino(char *mino, char **map, int i, int letter)
 {
 	int	n1;
 	int	n2;
