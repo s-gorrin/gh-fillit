@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/12 23:12:47 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/16 16:30:21 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ char			*mino_id(char *minostr);
 /*
 ** Solving
 */
-int				place_mino(char *mino, char **map, int i, int letter);
-int				unplace_mino(char **map, int letter);
-int				fillit_solve(t_minos *minos, t_map *map, int index, int next_mino);
+int				check_place_mino(const char *mino, t_map *map, int i, int letter);
+int				place_mino(const char *mino, t_map *map, int i, int letter);
+int				unplace_mino(t_map *map, int letter);
+int				fillit_solve(t_minos *minos, t_map *map, size_t index, int next_mino);
 void			fillit_cleanup(t_minos *minos, t_map *map);
 
 /*
@@ -72,6 +73,6 @@ int				get_num_minos(char **minosstr);
 /*
 ** Mino placement
 */
-int				mod_num(char *map, int num);
+int				mod_num(int line_len, int num);
 int				to_int(char hex);
 #endif

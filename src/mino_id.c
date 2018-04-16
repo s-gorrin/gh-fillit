@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 17:13:09 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/16 15:10:44 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char			*mino_id(char *minostr)
 	else if (minostr[i + 4] == '#')
 		ret = four_first(minostr, i);
 	else if (minostr[i + 5] == '#')
-		five_first(minostr, i);
+		ret = five_first(minostr, i);
 	else
 		return (NULL);
 	return (ret);

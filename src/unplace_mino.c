@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:19:49 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 21:23:34 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/16 15:46:33 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 ** @Return: 1 if the letter was unplaced, 0 if it was not found
 */
 
-int	unplace_mino(char **map, int letter)
+int	unplace_mino(t_map *map, int letter)
 {
 	int	i;
 	int	flag;
 
 	i = 0;
 	flag = 0;
-	while ((*map)[i] != '\0')
+	while (map->mapstr[i] != '\0')
 	{
-		if ((*map)[i] == letter + 'A')
+		if (map->mapstr[i] == letter + 'A')
 		{
-			(*map)[i] = '.';
+			map->mapstr[i] = '.';
 			flag++;
 		}
 		i++;

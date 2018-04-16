@@ -11,10 +11,10 @@ t_minos				*createminos(char **minosstr)
 
 int					get_num_minos(char **minosstr)
 {
-	char **start;
+	int index;
 
-	start = minosstr;
-	while (*start++)
-		;
-	return (minosstr - start);
+	index = 0;
+	while (minosstr[index] != NULL)
+		index++;
+	return (index);
 }

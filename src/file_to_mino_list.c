@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:52:52 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 23:23:16 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/16 15:12:33 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int			verify_char_counts(int dots, int hashes, int nls, int num_minos)
 		return (0);
 	if (hashes % MINO_STR_HASH != 0)
 		return (0);
-	if (num_minos > MINO_STR_LEN || num_minos < 1)
+	if (num_minos > MAX_MINOS || num_minos < 1)
 		return (0);
 	// if ((nls + dots + hashes) % MINO_STR_LEN)
 	// 	return (0);
@@ -106,7 +106,6 @@ char 		**minofile_minostr_check(char *mino_file_str, int num_minos)
 {
 	char **mino_list;
 	char *tmp;
-	char *tmp2;
 	int index;
 	int mino_list_i;
 
@@ -119,14 +118,8 @@ char 		**minofile_minostr_check(char *mino_file_str, int num_minos)
 	{
 		tmp = minostr_check(mino_file_str, index);
 		if (!tmp)
-		{
-			//free up stuff?
 			return (NULL);
-		}
-		tmp2 = ft_strnew(4);
-		ft_strlcpy(tmp2, tmp, 4);
-		mino_list[mino_list_i] = tmp2;
-		if (mino_list[mino_list_i] )
+		mino_list[mino_list_i] = tmp;
 		index += MINO_STR_LEN;
 		mino_list_i++;
 	}
@@ -137,9 +130,7 @@ char 		**minofile_minostr_check(char *mino_file_str, int num_minos)
 char *minostr_check(char *mino_file_str, int index)
 {
 	char *minostart;
-	int first_hash;
 
-	first_hash = 0;
 	minostart = &mino_file_str[index];
 	return (mino_id(minostart));
 }

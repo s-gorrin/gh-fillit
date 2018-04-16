@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 05:15:37 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/12 22:11:25 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/16 16:31:04 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void				fillit_cleanup(t_minos *minos, t_map *map)
 	}
 }
 
-int fillit_solve(t_minos *minos, t_map *map, int index, int next_mino)
+int fillit_solve(t_minos *minos, t_map *map, size_t index, int next_mino)
 {
     if (!map)
         map = createmap(ft_sqrt_cl(minos->num_mino * 4));
-    if (index == map->mapsize)
+    if (index == ft_strlen(map->mapstr))
     {
         if (next_mino == minos->num_mino)
         {
@@ -41,7 +41,7 @@ int fillit_solve(t_minos *minos, t_map *map, int index, int next_mino)
         map = new_map_plus_one(map);
         fillit_solve(minos, map, 0, 0);
     }
-    if (!place_mino(minos->minolist[next_mino], &map->mapstr, index, next_mino))
+    if (!check_place_mino(minos->minolist[next_mino], map, index, next_mino))
     {
         if (index % map->mapsize == 0)
         {
@@ -57,7 +57,7 @@ int fillit_solve(t_minos *minos, t_map *map, int index, int next_mino)
     }
     for (; next_mino < minos->num_mino; next_mino++)
     {
-        if (place_mino(minos->minolist[next_mino], &map->mapstr, index, next_mino))
+        if (place_mino(minos->minolist[next_mino], map, index, next_mino))
         {
             if (index % map->mapsize == 0)
             {
@@ -69,7 +69,7 @@ int fillit_solve(t_minos *minos, t_map *map, int index, int next_mino)
                 if (fillit_solve(minos, map, index + 1, next_mino + 1))
                     return (1);
             }
-            unplace_mino(&map->mapstr, next_mino);
+            unplace_mino(map, next_mino);
         }
     }
     return (0);

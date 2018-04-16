@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place_mino.c                                       :+:      :+:    :+:   */
+/*   check_place_mino.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/10 19:27:51 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/16 15:49:07 by sgorrin          ###   ########.fr       */
+/*   Created: 2018/04/16 16:15:12 by sgorrin           #+#    #+#             */
+/*   Updated: 2018/04/16 16:23:59 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** @Param1: the char to be changed, should be a digit or letter
 ** @Return: positive number, or -1 if an invalid mino managed to get in
 */
-
+/*
 int	to_int(char hex)
 {
 	if (ft_isdigit(hex))
@@ -28,12 +28,12 @@ int	to_int(char hex)
 		return (-1);
 }
 
-/*
+*
 ** @Function: modifies number (hash location) to adjust for map size
 ** @Param1: map, to determine size
 ** @Param2: number to be modified
 ** @Return: modified number, which shold put the piece in the right place
-*/
+
 
 int	mod_num(int line_len, int num)
 {
@@ -57,7 +57,7 @@ int	mod_num(int line_len, int num)
 		return (num);
 	return (num);
 }
-
+*/
 /*
 ** @Function: attempts to place a mino on the map, by changing the . to a letter
 ** @Param1: mino piece to be placed
@@ -67,7 +67,7 @@ int	mod_num(int line_len, int num)
 ** @Return: 1 for success, 0 for failure, -1 for invalid piece (can be removed)
 */
 
-int			place_mino(const char *mino, t_map *map, int i, int letter)
+int			check_place_mino(const char *mino, t_map *map, int i, int letter)
 {
 	int	n1;
 	int	n2;
@@ -86,13 +86,7 @@ int			place_mino(const char *mino, t_map *map, int i, int letter)
 		return (-1);
 	if (mstr[i + n1] == '.' && mstr[i + n2] == '.' &&
 			mstr[i + n3] == '.' && mstr[i + n4] == '.')
-	{
-		mstr[i + n1] = letter + 'A';
-		mstr[i + n2] = letter + 'A';
-		mstr[i + n3] = letter + 'A';
-		mstr[i + n4] = letter + 'A';
 		return (1);
-	}
 	else
 		return (0);
 }
