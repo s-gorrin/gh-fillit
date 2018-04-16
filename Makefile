@@ -9,9 +9,10 @@ BIN_DIR := obj
 
 # SOURCE_DIR := $(addprefix $(SOUCE_DIR)/,$())
 
-FILES += main	file_to_mino_list	is_valid_mino_list	mino_id	\
-		 place_mino	unplace_mino	fillit_solver	ft_error	\
-		 map_line_len
+FILES += \
+file_to_mino_list	fillit_map	fillit_solver	\
+is_valid_mino_str	main		mino_id			\
+place_mino			unplace_mino				\
 
 BIN := $(addsuffix .o,$(FILES))
 

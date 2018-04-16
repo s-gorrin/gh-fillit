@@ -19,51 +19,127 @@
 ** @Return: number of bytes read by read call
 */
 
-static int	file_to_str(char *file, char **minofile)
+char		**file_to_mino_list(char *filepath)
+{
+	char *mino_file_str;
+	char **mino_list;
+	int num_minos;
+	
+	mino_file_str = file_to_str(filepath);
+	if (!mino_file_str)
+		return (NULL);
+	num_minos = mino_file_str_verif(mino_file_str);
+	if (!num_minos)
+		return (NULL);
+	mino_list = minofile_minostr_check(mino_file_str, num_minos);
+	if (mino_list)
+		return (mino_list);
+	else
+		return (NULL);
+}
+
+char		*file_to_str(char *filepath)
 {
 	int		fd;
 	int		ret;
+	char 	*minofile;
 	char	buf[BUFF_SIZE + 1];
 
-	if (!(fd = open(file, O_RDONLY)))
-		return (0);
+	if (!(fd = open(filepath, O_RDONLY)))
+		return (NULL);
 	if (!(ret = read(fd, buf, BUFF_SIZE)))
-		return (0);
-	*minofile = ft_strnew(ret);
-	ft_memcpy(*minofile, buf, ret);
+		return (NULL);
+	minofile = ft_strnew(ret + 1);
+	ft_strlcpy(minofile, buf, ret);
 	close(fd);
-	return (ret);
+	return (minofile);
 }
 
-/*
-** @Function: turns file into 2d char array
-** @Param1: file to be read
-** @Return: 2d char array of valid pieces, or NULL for invalid anything
-*/
-
-char		**file_to_mino_list(char *file)
+int			mino_file_str_verif(char *mino_file_str)
 {
-	int		ret;
-	int		i;
-	int		j;
-	char	*minofile;
-	char	**mino_list;
+	int hashes;
+	int nls;
+	int num_minos;
+	int dots;
 
-	i = 0;
-	j = 0;
-	ret = file_to_str(file, &minofile);
-	if (!(mino_list = (char **)malloc(sizeof(**mino_list) * ((ret / 21) + 1))))
-		return (0);
-	while (minofile[i] != '\0')
+	hashes = 0;
+	nls = 0;
+	num_minos = 0;
+	dots = 0;
+	while (*mino_file_str)
 	{
-		if (!(is_valid_mino_str(minofile, i)))
+		if (*mino_file_str == '#')
+			hashes++;
+		else if (*mino_file_str == '\n')
+		{
+			if (*(mino_file_str + 1) == '\n')
+				num_minos++;
+			nls++;
+		}
+		else if (*mino_file_str == '.')
+			dots++;
+		else
 			return (0);
-		if ((mino_list[j] = mino_id(minofile + i)) == NULL)
-			return (0);
-		i += 21;
-		j++;
+		mino_file_str++;
 	}
-	mino_list[j] = '\0';
-	ft_strdel(&minofile);
+	if (!(verify_char_counts(dots, hashes, nls, num_minos)))
+		return (0);
+	return (num_minos);
+}
+
+int			verify_char_counts(int dots, int hashes, int nls, int num_minos)
+{
+	if (nls % MINO_STR_NL != 0)
+		return (0);
+	if (dots % MINO_STR_DOTS != 0)
+		return (0);
+	if (hashes % MINO_STR_HASH != 0)
+		return (0);
+	if (num_minos > MINO_STR_LEN || num_minos < 1)
+		return (0);
+	// if ((nls + dots + hashes) % MINO_STR_LEN)
+	// 	return (0);
+	return (1);
+}
+
+char 		**minofile_minostr_check(char *mino_file_str, int num_minos)
+{
+	char **mino_list;
+	char *tmp;
+	char *tmp2;
+	int index;
+	int mino_list_i;
+
+	index = 0;
+	mino_list_i = 0;
+	mino_list = (char **)ft_memalloc(num_minos + 1);
+	if (!mino_list)
+		return (NULL);
+	while (mino_file_str[index])
+	{
+		tmp = minostr_check(mino_file_str, index);
+		if (!tmp)
+		{
+			//free up stuff?
+			return (NULL);
+		}
+		tmp2 = ft_strnew(4);
+		ft_strlcpy(tmp2, tmp, 4);
+		mino_list[mino_list_i] = tmp2;
+		if (mino_list[mino_list_i] )
+		index += MINO_STR_LEN;
+		mino_list_i++;
+	}
+	mino_list[mino_list_i] = NULL;
 	return (mino_list);
+}
+
+char *minostr_check(char *mino_file_str, int index)
+{
+	char *minostart;
+	int first_hash;
+
+	first_hash = 0;
+	minostart = &mino_file_str[index];
+	return (mino_id(minostart));
 }

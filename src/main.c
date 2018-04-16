@@ -32,16 +32,20 @@ static int	ft_error(void)
 
 int			main(int argc, char **argv)
 {
-	char	**minos;
-	char	**map;
+	t_minos	*minos;
+	char	**minostr;
+	t_map	*map;
 
+	map = NULL;
+	minos = NULL;
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit source_file\n");
 		return (0);
 	}
-	if ((minos = file_to_mino_list(argv[1])) == NULL)
+	if ((minostr = file_to_mino_list(argv[1])) == NULL)
 		return (ft_error());
-	fillit_solver(minos, map, 0, 0);
+	minos = createminos(minostr);
+	fillit_solve(minos, map, 0, 0);
 	return (0);
 }

@@ -18,7 +18,7 @@
 ** @Return: positive number, or -1 if an invalid mino managed to get in
 */
 
-static int	to_int(char hex)
+int	to_int(char hex)
 {
 	if (ft_isdigit(hex))
 		return (hex - 48);
@@ -35,7 +35,7 @@ static int	to_int(char hex)
 ** @Return: modified number, which shold put the piece in the right place
 */
 
-static int	mod_num(char const *map, int num)
+int	mod_num(char *map, int num)
 {
 	int	line_len;
 
@@ -60,6 +60,7 @@ static int	mod_num(char const *map, int num)
 	}
 	else
 		return (num);
+	return (num);
 }
 
 /*
@@ -80,10 +81,10 @@ int			place_mino(char *mino, char **map, int i, int letter)
 
 	if (ft_strchr(*map, letter + 'A'))
 		return (0);
-	n1 = mod_num((char const)*map, to_int(mino[0]));
-	n2 = mod_num((char const)*map, to_int(mino[1]));
-	n3 = mod_num((char const)*map, to_int(mino[2]));
-	n4 = mod_num((char const)*map, to_int(mino[3]));
+	n1 = mod_num((char *)map, to_int(mino[0]));
+	n2 = mod_num((char *)map, to_int(mino[1]));
+	n3 = mod_num((char *)map, to_int(mino[2]));
+	n4 = mod_num((char *)map, to_int(mino[3]));
 	if (n1 < 0 || n2 < 0 || n3 < 0 || n4 < 0)
 		return (-1);
 	if ((*map)[i + n1] == '.' && (*map)[i + n2] == '.' &&

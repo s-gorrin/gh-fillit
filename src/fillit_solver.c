@@ -12,92 +12,66 @@
 
 #include "fillit.h"
 
-int                 fill_smallestsquare(int nummino)
+void				fillit_cleanup(t_minos *minos, t_map *map)
 {
-    return (ft_sqrt(nummino * 4));
+	if (minos)
+	{
+		ft_strdel(minos->minolist);
+		free(minos);
+	}
+	if (map)
+	{
+		ft_strdel(&(map->mapstr));
+		free(map);
+	}
 }
 
-int fillit_solve(t_mino **minos, char **map, int index, int next_mino)
+int fillit_solve(t_minos *minos, t_map *map, int index, int next_mino)
 {
-    int     next_mino;
-    int     number_of_minos;
 
-    if (!*map)
-        *map = createmap(ft_sqrt(numberofminos * 4));
-    if (index == ft_strlen(*map))
+    if (!map)
+        map = createmap(ft_sqrt_cl(minos->num_mino * 4));
+    if (index == map->mapsize)
     {
-        if (next_mino == number_of_minos)
+        if (next_mino == map->mapsize)
         {
-            ft_putendl(*map);
+            ft_putendl(map->mapstr);
+            fillit_cleanup(minos, map);
             return (1);
         }
-        *map = new_map_plus_one;
+        map = new_map_plus_one(map);
         fillit_solve(minos, map, 0, 0);
     }
-    if (!place_mino(minos[next_mino], map, index, next_mino))
+    if (!place_mino(minos->minolist[next_mino], &map->mapstr, index, next_mino))
     {
-        if (index % MAP_LINE_LENGTH == 0)
+        if (index % map->mapsize == 0)
         {
-            if (fillit_solve(map, minos, index + 2, next_mino))
+            if (fillit_solve(minos, map, index + 2, next_mino))
                 return (1);
         }
         else
         {
-            if (fillit_solve(map, minos, index + 1, next_mino))
+            if (fillit_solve(minos, map, index + 1, next_mino))
                 return (1);
         }
         return (0);
     }
-    for (; next_mino < number_of_minos; next_mino++)
+    for (; next_mino < minos->num_mino; next_mino++)
     {
-        if (place_mino(minos[next_mino], map, index, next_mino))
+        if (place_mino(minos->minolist[next_mino], &map->mapstr, index, next_mino))
         {
-            if (index % MAP_LINE_LENGTH == 0)
+            if (index % map->mapsize == 0)
             {
-                if (fillit_solve(map, minos, index + 2, next_mino + 1))
+                if (fillit_solve(minos, map, index + 2, next_mino + 1))
                     return (1);
             }
             else
             {
-                if (fillit_solve(map, minos, index + 1, next_mino + 1))
+                if (fillit_solve(minos, map, index + 1, next_mino + 1))
                     return (1);
             }
-            unplace_mino(map, next_mino);
+            unplace_mino(&map->mapstr, next_mino);
         }
     }
     return (0);
-}
-
-char                *fill_newsquare(int size)
-{
-    char    *square;
-    int     i;
-    int     end;
-
-    square = ft_strnew(end);
-    i = 0;
-    end = size * size + size;
-    while (i < end)
-    {
-        square[i] = '.';
-        if (i % (size + 1) == 0)
-            square[i] = '\n';
-        i++;
-    }
-    return (square);
-}
-
-int                 fillit_solver(t_minos **mino, int numofminos)
-{
-    t_minos         **minolist;
-    t_fillsquare    *square;
-    int             squarenum;
-
-    squarenum = fill_smallestsquare(numofminos)
-    square = fill_newsquare(squarenum);
-    while (!fill_movement(square, squarenum, 0))
-    {
-        squarenum++;
-        square = fill_newsquare(squarenum);
-    }
 }
