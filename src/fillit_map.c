@@ -48,7 +48,7 @@ char                *fill_newsquare(int size)
     while (i < end)
     {
         square[i] = '.';
-        if (i % (size + 1) == 0)
+        if (i + 1 % (size + 1) == 0)
             square[i] = '\n';
         i++;
     }

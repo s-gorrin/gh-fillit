@@ -28,12 +28,11 @@ void				fillit_cleanup(t_minos *minos, t_map *map)
 
 int fillit_solve(t_minos *minos, t_map *map, int index, int next_mino)
 {
-
     if (!map)
         map = createmap(ft_sqrt_cl(minos->num_mino * 4));
     if (index == map->mapsize)
     {
-        if (next_mino == map->mapsize)
+        if (next_mino == minos->num_mino)
         {
             ft_putendl(map->mapstr);
             fillit_cleanup(minos, map);

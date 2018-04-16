@@ -49,8 +49,8 @@ char		*file_to_str(char *filepath)
 		return (NULL);
 	if (!(ret = read(fd, buf, BUFF_SIZE)))
 		return (NULL);
-	minofile = ft_strnew(ret + 1);
-	ft_strlcpy(minofile, buf, ret);
+	minofile = ft_strnew(ret);
+	ft_memcpy(minofile, buf, ret);
 	close(fd);
 	return (minofile);
 }
