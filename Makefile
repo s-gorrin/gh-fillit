@@ -2,42 +2,19 @@ NAME := fillit
 
 CC := gcc
 CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -L ./libft -lft
+CFLAGS += -I inc
 
-SOURCE_DIR := src
-BIN_DIR := obj
-
-
-# SOURCE_DIR := $(addprefix $(SOUCE_DIR)/,$())
-
-FILES += \
-file_to_mino_list	fillit_map	fillit_solver	\
-is_valid_mino_str	main		mino_id			\
-place_mino			unplace_mino				\
-
-BIN := $(addsuffix .o,$(FILES))
-
-OBJ := $(addprefix $(BIN_DIR)/,$(BIN))
-
-INC := inc
-
-$(BIN_DIR)/%.o: $(SOURCE_DIR)/%.c
-	@$(CC) $(CFLAGS) -I $(INC) -c $^
-	@/bin/echo -n "#"
+FILES += ./src/mino_id.c	./src/check_place_mino.c       ./src/file_to_mino_list.c       ./src/fillit_map.c  \
+./src/fillit_mino.c     ./src/fillit_solver.c           ./src/main.c	./src/place_mino.c	./src/unplace_mino.c
 
 .PHONY: clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "\n\033[32m[ object files created ( ͡° ͜ʖ ͡°) ]\033[0m"
-	@$(CC) $(OBJ) -o $(NAME)
+$(NAME):
+	@$(CC) $(CFLAGS) $(FILES) -o $(NAME) -g
 	@echo "\033[32m[ executable $(NAME) created ( ͡° ͜ʖ ͡°) ]\033[0m"
-
-$(OBJ): | $(BIN_DIR)
-
-$(BIN_DIR):
-	@mkdir -p $(addprefix $(BIN_DIR)/,$(BIN))
-
 
 clean:
 	@rm -rf $(BIN_DIR)
