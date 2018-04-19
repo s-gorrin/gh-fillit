@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:52:52 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/16 15:12:33 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 15:48:27 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 ** @Return: number of bytes read by read call
 */
 
-char		**file_to_mino_list(char *filepath)
+char	**file_to_mino_list(char *filepath)
 {
-	char *mino_file_str;
-	char **mino_list;
-	int num_minos;
-	
+	char	*mino_file_str;
+	char	**mino_list;
+	int		num_minos;
+
 	mino_file_str = file_to_str(filepath);
 	if (!mino_file_str)
 		return (NULL);
-	num_minos = mino_file_str_verif(mino_file_str);
+	num_minos = verify_input(mino_file_str);
 	if (!num_minos)
 		return (NULL);
 	mino_list = minofile_minostr_check(mino_file_str, num_minos);
@@ -38,11 +38,11 @@ char		**file_to_mino_list(char *filepath)
 		return (NULL);
 }
 
-char		*file_to_str(char *filepath)
+char	*file_to_str(char *filepath)
 {
 	int		fd;
 	int		ret;
-	char 	*minofile;
+	char	*minofile;
 	char	buf[BUFF_SIZE + 1];
 
 	if (!(fd = open(filepath, O_RDONLY)))
@@ -55,59 +55,12 @@ char		*file_to_str(char *filepath)
 	return (minofile);
 }
 
-int			mino_file_str_verif(char *mino_file_str)
+char	**minofile_minostr_check(char *mino_file_str, int num_minos)
 {
-	int hashes;
-	int nls;
-	int num_minos;
-	int dots;
-
-	hashes = 0;
-	nls = 0;
-	num_minos = 0;
-	dots = 0;
-	while (*mino_file_str)
-	{
-		if (*mino_file_str == '#')
-			hashes++;
-		else if (*mino_file_str == '\n')
-		{
-			if (*(mino_file_str + 1) == '\n')
-				num_minos++;
-			nls++;
-		}
-		else if (*mino_file_str == '.')
-			dots++;
-		else
-			return (0);
-		mino_file_str++;
-	}
-	if (!(verify_char_counts(dots, hashes, nls, num_minos)))
-		return (0);
-	return (num_minos);
-}
-
-int			verify_char_counts(int dots, int hashes, int nls, int num_minos)
-{
-	if (nls % MINO_STR_NL != 0)
-		return (0);
-	if (dots % MINO_STR_DOTS != 0)
-		return (0);
-	if (hashes % MINO_STR_HASH != 0)
-		return (0);
-	if (num_minos > MAX_MINOS || num_minos < 1)
-		return (0);
-	// if ((nls + dots + hashes) % MINO_STR_LEN)
-	// 	return (0);
-	return (1);
-}
-
-char 		**minofile_minostr_check(char *mino_file_str, int num_minos)
-{
-	char **mino_list;
-	char *tmp;
-	int index;
-	int mino_list_i;
+	char	**mino_list;
+	char	*tmp;
+	int		index;
+	int		mino_list_i;
 
 	index = 0;
 	mino_list_i = 0;
@@ -127,9 +80,9 @@ char 		**minofile_minostr_check(char *mino_file_str, int num_minos)
 	return (mino_list);
 }
 
-char *minostr_check(char *mino_file_str, int index)
+char	*minostr_check(char *mino_file_str, int index)
 {
-	char *minostart;
+	char	*minostart;
 
 	minostart = &mino_file_str[index];
 	return (mino_id(minostart));

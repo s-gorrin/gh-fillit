@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/16 15:10:44 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 15:57:26 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static char	*five_first(char *mstr, int i)
 ** Return is formatted with the top left corner of the mino as place 0.
 */
 
-char			*mino_id(char *minostr)
+char		*mino_id(char *minostr)
 {
 	int		i;
 	char	*ret;
