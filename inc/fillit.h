@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/16 16:30:21 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 15:40:56 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # define MINO_STR_HASH 4
 # define MINO_STR_DOTS 12
 # define MAX_MINOS 26
+
+typedef struct	s_count
+{
+	int			hashes;
+	int			dots;
+	int			nls;
+	int			num_minos;
+}				t_count;
 
 typedef struct	s_minos
 {
