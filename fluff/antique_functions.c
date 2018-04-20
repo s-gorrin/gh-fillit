@@ -48,3 +48,97 @@ int			verify_char_counts(int dots, int hashes, int nls, int num_minos)
 	return (1);
 }
 */
+
+
+//From unplace_mino:
+/*
+** @Function: unplaces a mino by changing its letter to a '.'
+** @Param1: map that might contain the mino to be unplaced
+** @Param2: letter of the mino being looked for
+** @Return: 1 if the letter was unplaced, 0 if it was not found
+*/
+/*
+int	unplace_mino(t_map *map, t_minos *mino, int letter)
+{
+	int	i;
+	int	flag;
+	int	loc;
+
+	loc = t_mino->location[letter];
+	i = 0;
+	flag = 0;
+	while (map->mapstr[i] != '\0')
+	{
+		if (map->mapstr[i] == letter + 'A')
+		{
+			map->mapstr[i] = '.';
+			flag++;
+		}
+		i++;
+	}
+	t_mino->location[letter] = 0;
+	return (loc)
+}
+
+
+int	unplace_mino(t_mino *mino, t_map *map, int i)
+{
+	int		n1;
+	int		n2;
+	int		n3;
+	int		n4;
+	int		loc;
+	char	let;
+
+	let = mino->letter;
+	loc = mino->location;
+	n1 = mod_num(map->mapsize, to_int(mino->minostr[0]));
+	n2 = mod_num(map->mapsize, to_int(mino->minostr[1]));
+	n3 = mod_num(map->mapsize, to_int(mino->minostr[2]));
+	n4 = mod_num(map->mapsize, to_int(mino->minostr[3]));
+	if ((map->mapstr)[i + n1] == let && (map->mapstr)[i + n2] == let &&
+			(map->mapstr)[i + n3] == let && (map->mapstr)[i + n4] == let);
+	{
+		(map->mapstr)[i + n1] = '.';
+		(map->mapstr)[i + n2] = '.';
+		(map->mapstr)[i + n3] = '.';
+		(map->mapstr)[i + n4] = '.';
+		mino->location = -1;
+		return (loc);
+	}
+	else
+		return (0);
+}
+*/
+
+
+//From place_mino
+/*
+int	place_mino(t_mino *mino, t_map *map, int i)
+{
+	int		n1;
+	int		n2;
+	int		n3;
+	int		n4;
+
+	if (ft_strchr(map->mapstr, mino->letter))
+		return (0);
+	n1 = mod_num(map->mapsize, to_int(mino->minostr[0]));
+	n2 = mod_num(map->mapsize, to_int(mino->minostr[1]));
+	n3 = mod_num(map->mapsize, to_int(mino->minostr[2]));
+	n4 = mod_num(map->mapsize, to_int(mino->minostr[3]));
+	if ((map->mapstr)[i + n1] == '.' && (map->mapstr)[i + n2] == '.' &&
+			(map->mapstr)[i + n3] == '.' && (map->mapstr)[i + n4] == '.')
+	{
+		(map->mapstr)[i + n1] = mino->letter;
+		(map->mapstr)[i + n2] = mino->letter;
+		(map->mapstr)[i + n3] = mino->letter;
+		(map->mapstr)[i + n4] = mino->letter;
+		mino->location = i;
+		return (1);
+	}
+	else
+		return (0);
+}
+*/
+
