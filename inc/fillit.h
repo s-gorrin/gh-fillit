@@ -63,8 +63,7 @@ char			*mino_id(char *minostr);
 */
 int				place_mino(t_mino *mino, t_map *map, int i);
 int				unplace_mino(t_mino *mino, t_map *map);
-void			fillit_solver(t_mino *mino, t_map *map,
-size_t index, int num_mino);
+void			fillit_solver(char **mino_list);
 
 /*
 ** Map

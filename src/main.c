@@ -32,12 +32,10 @@ static int	ft_error(void)
 
 int			main(int argc, char **argv)
 {
-	t_mino	**mino;
 	char	**minostr;
 	t_map	*map;
 
 	map = NULL;
-	mino = NULL;
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit source_file\n");
@@ -45,7 +43,6 @@ int			main(int argc, char **argv)
 	}
 	if ((minostr = file_to_mino_list(argv[1])) == NULL)
 		return (ft_error());
-	mino = get_mino_array(minostr);
-	fillit_solver(mino);
+	fillit_solver(minostr);
 	return (0);
 }
