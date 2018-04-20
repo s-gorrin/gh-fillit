@@ -12,77 +12,53 @@
 
 #include "fillit.h"
 
-int				are_all_placed(t_minos *minos, t_map *map)
+void fillit_solver(t_minos **minos)
 {
-	size_t i;
-	int j;
-	int num;
-	char *alphabet;
-	char *mapstr;
+    t_map *map;
+    
+    map = createmap(0);
+    map->num_mino = len(minos);
+    map = createmap(map->num_mino);
 
-	mapstr = map->mapstr;
-	i = 0;
-	j = 0;
-	num = 0;
-	alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	while (i < ft_strlen(mapstr))
-	{
-		while (j < minos->num_mino)
-		{
-			if (mapstr[i] == alphabet[j])
-				num++;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (num == minos->num_mino);
+    while (check_map(map, minos, 0, 0) == 0)
+        map = next_map_plus_one(map);
+    ft_putendl(map->mapstr);
 }
 
-int fillit_solve(t_minos *minos, t_map *map, size_t index, int next_mino)
+int check_map(t_map *map, t_minos **minos, int index, int next_mino)
 {
-    if (!map)
-        map = createmap(ft_sqrt_cl(minos->num_mino * 4));
-    if (index == (size_t)map->mapsize * MINO_STR_LEN - 1 && index != 0)
+    if (index == MAP_AREA)
     {
-        if (are_all_placed(minos, map))
-        {
-            ft_putendl(map->mapstr);
+        if (are_all_placed(map, minos, startmino))
             return (1);
-        }
-        map = new_map_plus_one(map);
-        fillit_solve(minos, map, 0, 0);
+        map = clearmap(map);
+        check_map(map, minos, 0, startmino++);
     }
-    if (!check_place_mino(minos->minolist[next_mino % minos->num_mino - 1], map, index, next_mino))
+    if (can_place_any_mino(map, minos, index, startmino))
     {
         if (index % map->mapsize == 0)
-        {
-            if (fillit_solve(minos, map, index + 2, next_mino))
-                return (1);
-        }
+            check_map(map, minos, index + 2);
         else
-        {
-            if (fillit_solve(minos, map, index + 1, next_mino))
-                return (1);
-        }
-        return (0);
+            check_map(map, minos, index + 1);
     }
-    for (; next_mino < minos->num_mino; next_mino++)
+    while (i < minos->num_mino)
     {
-        if (place_mino(minos->minolist[next_mino % minos->num_mino - 1], map, index, next_mino))
-        {
-            if (index % map->mapsize == 0)
-            {
-                if (fillit_solve(minos, map, index + 2, next_mino + 1))
-                    return (1);
-            }
-            else
-            {
-                if (fillit_solve(minos, map, index + 1, next_mino + 1))
-                    return (1);
-            }
-            unplace_mino(map, next_mino % (minos->num_mino - 1));
-        }
+        place_piece(minos->minolist[i], map, index, i);
+        check_map(map, minos, index);
+        i++;
     }
+}
+
+int can_place_any_mino(t_map *map, t_mino *minos, int index)
+{
+    int num_mino;
+    char *mino;
+    int i;
+
+    num_mino = minos->num_mino;
+    i = 0;
+    while (num_mion--)
+        if (place_mino(minos->minolist[i++], map, index, i))
+            return (1);
     return (0);
 }

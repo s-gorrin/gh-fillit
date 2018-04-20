@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 
+# define MAP_AREA (map->mapsize * (map->mapsize + 1))
 # define BUFF_SIZE 600
 # define MINO_STR_LEN 21
 # define MINO_STR_LINELEN 4
@@ -33,16 +34,18 @@ typedef struct	s_count
 	int			num_minos;
 }				t_count;
 
-typedef struct	s_minos
+typedef struct	s_mino
 {
-	char		**minolist;
-	int			num_mino;
-}				t_minos;
+	char		*minostr;
+	int			location;
+	char		letter;
+}				t_mino;
 
 typedef struct	s_map
 {
 	char		*mapstr;
 	int			mapsize;
+	int			num_minos;
 }				t_map;
 /*
 ** Reading in

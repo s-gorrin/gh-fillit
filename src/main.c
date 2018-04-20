@@ -32,7 +32,7 @@ static int	ft_error(void)
 
 int			main(int argc, char **argv)
 {
-	t_minos	*minos;
+	t_minos	**minos;
 	char	**minostr;
 	t_map	*map;
 
@@ -45,7 +45,7 @@ int			main(int argc, char **argv)
 	}
 	if ((minostr = file_to_mino_list(argv[1])) == NULL)
 		return (ft_error());
-	minos = createminos(minostr);
-	fillit_solve(minos, map, 0, 0);
+	minos = get_mino_array(minostr);
+	fillit_solver(minos);
 	return (0);
 }

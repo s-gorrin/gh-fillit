@@ -25,6 +25,13 @@ t_map	*createmap(int size)
 	map = (t_map *)ft_memalloc(sizeof(t_map));
 	if (map)
 	{
+		if (!size)
+		{
+			map->mapsize = 0;
+			map->mapstr = NULL;
+			num->minos = 0;
+			return (map);
+		}
 		map->mapsize = size;
 		map->mapstr = fill_newsquare(size);
 	}

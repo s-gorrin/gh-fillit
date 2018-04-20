@@ -12,14 +12,34 @@
 
 #include "fillit.h"
 
-t_minos	*createminos(char **minosstr)
+t_mino	*createmino(char *minosstr, int index)
 {
-	t_minos	*minos;
+	t_mino	*mino;
 
-	minos = (t_minos *)ft_memalloc(sizeof(t_minos));
-	minos->minolist = minosstr;
-	minos->num_mino = get_num_minos(minosstr);
+	mino = (t_mino *)ft_memalloc(sizeof(t_mino));
+	mino->minostr = minosstr;
+	mino->location = -1;
+	mino->letter = index + 'A';
 	return (minos);
+}
+
+t_mino **get_mino_array(char **minolist)
+{
+	int		num_minos;
+	t_mino **minoarr;
+	int index;
+
+	index = 0;
+	num_minos = get_num_minos(minolist);
+	minoarr = ft_memalloc(sizeof(t_mino *) * num_minos + 1);
+	while (*minolist)
+	{
+		minoarr[index] = createmino(*minolist, index)
+		*minolist++;
+		index++;
+	}
+	minoarr[index] = NULL;
+	return (minoarr);
 }
 
 int		get_num_minos(char **minosstr)
