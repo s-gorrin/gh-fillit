@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 18:49:01 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 23:26:31 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:28:23 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static int	ft_error(void)
 
 int			main(int argc, char **argv)
 {
-	t_minos	**minos;
+	t_mino	**mino;
 	char	**minostr;
 	t_map	*map;
 
 	map = NULL;
-	minos = NULL;
+	mino = NULL;
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit source_file\n");
@@ -45,7 +45,7 @@ int			main(int argc, char **argv)
 	}
 	if ((minostr = file_to_mino_list(argv[1])) == NULL)
 		return (ft_error());
-	minos = get_mino_array(minostr);
+	mino = get_mino_array(minostr);
 	fillit_solver(minos);
 	return (0);
 }

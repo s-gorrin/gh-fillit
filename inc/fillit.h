@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/19 15:40:56 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:31:58 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,19 @@ typedef struct	s_map
 */
 char			**file_to_mino_list(char *file);
 char			*file_to_str(char *filepath);
-int				mino_file_str_verif(char *mino_file_str);
-int				verify_char_counts(int dots, int hases, int nls, int num_minos);
+//int				mino_file_str_verif(char *mino_file_str);
+//int				verify_char_counts(int dots, int hases, int nls, int num_minos);
+int				verify_input(char const *minostr);
 char 			**minofile_minostr_check(char *mino_file_str, int num_minos);
-char 			*minostr_check(char *mino_file_str, int index);
 char			*mino_id(char *minostr);
 
 /*
 ** Solving
 */
-int				check_place_mino(const char *mino, t_map *map, int i, int letter);
-int				place_mino(const char *mino, t_map *map, int i, int letter);
-int				unplace_mino(t_map *map, int letter);
-int				fillit_solve(t_minos *minos, t_map *map, size_t index, int next_mino);
-void			fillit_cleanup(t_minos *minos, t_map *map);
+int				place_mino(t_mino *mino, t_map *map, int i);
+int				unplace_mino(t_mino *mino, t_map *map);
+void			fillit_solver(t_mino *mino, t_map *map,
+size_t index, int num_mino);
 
 /*
 ** Map
@@ -73,12 +72,13 @@ void			fillit_cleanup(t_minos *minos, t_map *map);
 t_map			*createmap(int size);
 char			*fill_newsquare(int size);
 int				map_line_len(char *map);
-t_map			*new_map_plus_one(t_map	*current_map);
+t_map			*new_map_plus_one(t_map *current_map);
 
 /*
 ** Mino
 */
-t_minos			*createminos(char **minosstr);
+t_mino			*createmino(char *minosstr, int index);
+t_mino			**get_mino_array(char **minolist, int num_minos);
 int				get_num_minos(char **minosstr);
 
 /*

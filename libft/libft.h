@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 17:28:03 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/12 22:54:00 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 21:43:44 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int					ft_abs(int x);
 int					ft_numlen(int n);
 int					ft_is_prime(int nb);
 int					ft_sqrt_cl(int nb);
+int					ft_arrlen(char **arr);
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
