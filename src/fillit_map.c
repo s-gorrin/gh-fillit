@@ -17,25 +17,23 @@
 ** @Param1: The size of the mapstr to be created.
 ** @Return: A t_map with mapstr of size, with mapsize set to size;
 */
-
-t_map	*createmap(int size)
+t_map	*createmap(void)
 {
-	t_map	*map;
+	t_map *map;
 
 	map = (t_map *)ft_memalloc(sizeof(t_map));
-	if (map)
-	{
-		if (!size)
-		{
-			map->mapsize = 0;
-			map->mapstr = NULL;
-			map->num_mino = 0;
-			return (map);
-		}
-		map->mapsize = size;
-		map->mapstr = fill_newsquare(size);
-	}
+	if (!map)
+		return (NULL);
+	map->mapstr = NULL;
+	map->mapsize = 0;
+	map->num_mino = 0;
 	return (map);
+}
+
+void	update_mapstr(int size, t_map *map)
+{
+	map->mapsize = size;
+	map->mapstr = fill_newsquare(size);
 }
 
 /*

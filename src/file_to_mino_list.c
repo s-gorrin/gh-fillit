@@ -19,19 +19,18 @@
 ** @Return: number of bytes read by read call
 */
 
-char	**file_to_mino_list(char *filepath)
+char	**file_to_mino_list(char *filepath, int *num_mino)
 {
 	char	*mino_file_str;
 	char	**mino_list;
-	int		num_minos;
 
 	mino_file_str = file_to_str(filepath);
 	if (!mino_file_str)
 		return (NULL);
-	num_minos = verify_input(mino_file_str);
-	if (!num_minos)
+	*num_mino = verify_input(mino_file_str);
+	if (!*num_mino)
 		return (NULL);
-	mino_list = minofile_minostr_check(mino_file_str, num_minos);
+	mino_list = minofile_minostr_check(mino_file_str, *num_mino);
 	if (mino_list)
 		return (mino_list);
 	else

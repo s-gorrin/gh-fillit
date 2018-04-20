@@ -33,16 +33,19 @@ static int	ft_error(void)
 int			main(int argc, char **argv)
 {
 	char	**minostr;
+	int		num_mino;
 	t_map	*map;
 
-	map = NULL;
+	num_mino = 0;
+	map = createmap();
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit source_file\n");
 		return (0);
 	}
-	if ((minostr = file_to_mino_list(argv[1])) == NULL)
+	if ((minostr = file_to_mino_list(argv[1], &num_mino)) == NULL)
 		return (ft_error());
-	fillit_solver(minostr);
+	map->num_mino = num_mino;
+	fillit_solver(minostr, map);
 	return (0);
 }
