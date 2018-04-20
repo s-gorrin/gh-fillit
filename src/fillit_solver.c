@@ -12,53 +12,40 @@
 
 #include "fillit.h"
 
-void fillit_solver(t_minos **minos)
+void fillit_solver(char **minos_list)
 {
     t_map *map;
+    t_mino **minos;
     
     map = createmap(0);
-    map->num_mino = len(minos);
-    map = createmap(map->num_mino);
-
-    while (check_map(map, minos, 0, 0) == 0)
+    map->num_mino = ft_arrlen(minos_list);
+    minos = get_mino_array(mino_list, map->num_mino);
+    map = createmap(ft_sqrt_cl(map->num_mino * 4));
+    while (check_map(map, minos, 0, map->num_mino) == 0)
         map = next_map_plus_one(map);
     ft_putendl(map->mapstr);
 }
 
-int check_map(t_map *map, t_minos **minos, int index, int next_mino)
+int check_map(t_map *map, t_minos **minos, int index, int num_mino)
 {
-    if (index == MAP_AREA)
-    {
-        if (are_all_placed(map, minos, startmino))
-            return (1);
-        map = clearmap(map);
-        check_map(map, minos, 0, startmino++);
-    }
-    if (can_place_any_mino(map, minos, index, startmino))
-    {
-        if (index % map->mapsize == 0)
-            check_map(map, minos, index + 2);
-        else
-            check_map(map, minos, index + 1);
-    }
-    while (i < minos->num_mino)
-    {
-        place_piece(minos->minolist[i], map, index, i);
-        check_map(map, minos, index);
-        i++;
-    }
-}
+    int next_mino = 0;
 
-int can_place_any_mino(t_map *map, t_mino *minos, int index)
-{
-    int num_mino;
-    char *mino;
-    int i;
-
-    num_mino = minos->num_mino;
-    i = 0;
-    while (num_mion--)
-        if (place_mino(minos->minolist[i++], map, index, i))
-            return (1);
-    return (0);
+    if (num_mino == 0)
+        return (1);
+    if (index == MAP_AREA - 3)
+        return (0);
+    while (next_mino < map->num_mino)
+    {
+        while (minos[next_mino]->location == -1)
+        {
+            if (place_mino(minos->minolist[next_mino], map, index))
+                check_map(map, minos, index + 1, num_mino - 1);
+            next_mino++;
+        }
+        while (minos[next_mino]->location != -1)
+            next_mino--;
+        index = unplace_mino(minos[next_mino], map);
+        check_map(map, minos, index, num_mino + 1)
+    }
+    return(0);
 }

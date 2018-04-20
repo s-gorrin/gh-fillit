@@ -23,14 +23,12 @@ t_mino	*createmino(char *minosstr, int index)
 	return (minos);
 }
 
-t_mino **get_mino_array(char **minolist)
+t_mino **get_mino_array(char **minolist, int num_minos)
 {
-	int		num_minos;
 	t_mino **minoarr;
 	int index;
 
 	index = 0;
-	num_minos = get_num_minos(minolist);
 	minoarr = ft_memalloc(sizeof(t_mino *) * num_minos + 1);
 	while (*minolist)
 	{
@@ -40,14 +38,4 @@ t_mino **get_mino_array(char **minolist)
 	}
 	minoarr[index] = NULL;
 	return (minoarr);
-}
-
-int		get_num_minos(char **minosstr)
-{
-	int	index;
-
-	index = 0;
-	while (minosstr[index] != NULL)
-		index++;
-	return (index);
 }
