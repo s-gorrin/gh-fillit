@@ -1,0 +1,18 @@
+# Object files
+*.o
+*.obj
+*.ko
+*.elf
+
+# Unnamed executables
+a.out
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Intentional ignores
+*.ignore
+ignore*
