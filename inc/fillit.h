@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/19 22:31:58 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:39:19 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct	s_map
 {
 	char		*mapstr;
 	int			mapsize;
-	int			num_minos;
+	int			num_mino;
 }				t_map;
 /*
 ** Reading in

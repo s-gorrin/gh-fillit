@@ -7,7 +7,7 @@ CFLAGS += -I inc
 
 FILES +=	./src/mino_id.c	./src/check_place_mino.c	./src/file_to_mino_list.c	./src/fillit_map.c	\
 			./src/fillit_mino.c	./src/fillit_solver.c	./src/main.c	./src/place_mino.c	\
-			./src/unplace_mino.c	.src/check_tools.c ./src/verify_input.c
+			./src/unplace_mino.c	./src/check_tools.c ./src/verify_input.c
 
 .PHONY: clean fclean re
 

@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 18:49:01 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:28:23 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:45:13 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int			main(int argc, char **argv)
 	if ((minostr = file_to_mino_list(argv[1])) == NULL)
 		return (ft_error());
 	mino = get_mino_array(minostr);
-	fillit_solver(minos);
+	fillit_solver(mino);
 	return (0);
 }

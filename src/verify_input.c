@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:00 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 15:45:06 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:48:58 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int		verify_char_counts(int dots, int hashes, int nls, int num_minos)
 ** @Return: 0 for invalidating element, 1 for valid mino, 2 for valid char.
 */
 
-static int		char_checker(char *mino, int i, t_count *counts)
+static int		char_checker(char const *mino, int i, t_count *count)
 {
 	if (mino[i] == '.')
 		(count->dots)++;
@@ -85,7 +85,7 @@ int				verify_input(char const *minostr)
 	count = count_init();
 	while (minostr[index] != '\0' && ret == -1)
 	{
-		ret = char_checker(mino, index, count);
+		ret = char_checker(minostr, index, count);
 		index++;
 	}
 	return (ret > 0 ? ret : 0);

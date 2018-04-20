@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:19:49 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 20:13:40 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:47:47 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	unplace_mino(t_mino *mino, t_map *map)
 	int		n;
 	int		ni;
 	int		loc;
+	int		counter;
 	char	let;
 
 	ni = 0;
@@ -41,7 +42,7 @@ int	unplace_mino(t_mino *mino, t_map *map)
 		ni++;
 	}
 	mino->location = -1;
-	if (counter = 4)
+	if (counter == 4)
 		return (loc);
 	else
 		return (0);

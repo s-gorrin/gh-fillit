@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:03:34 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:13:09 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:41:14 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_map	*createmap(int size)
 		{
 			map->mapsize = 0;
 			map->mapstr = NULL;
-			num->minos = 0;
+			map->num_mino = 0;
 			return (map);
 		}
 		map->mapsize = size;

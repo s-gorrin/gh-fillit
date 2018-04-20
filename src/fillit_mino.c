@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:59:30 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 16:00:06 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:43:30 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_mino	*createmino(char *minosstr, int index)
 	mino->minostr = minosstr;
 	mino->location = -1;
 	mino->letter = index + 'A';
-	return (minos);
+	return (mino);
 }
 
 t_mino **get_mino_array(char **minolist, int num_minos)
@@ -30,10 +30,9 @@ t_mino **get_mino_array(char **minolist, int num_minos)
 
 	index = 0;
 	minoarr = ft_memalloc(sizeof(t_mino *) * num_minos + 1);
-	while (*minolist)
+	while (minolist[index])
 	{
-		minoarr[index] = createmino(*minolist, index)
-		*minolist++;
+		minoarr[index] = createmino(*minolist, index);
 		index++;
 	}
 	minoarr[index] = NULL;
