@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:19:49 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/16 15:46:33 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 20:13:40 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,30 @@
 ** @Return: 1 if the letter was unplaced, 0 if it was not found
 */
 
-int	unplace_mino(t_map *map, int letter)
+int	unplace_mino(t_mino *mino, t_map *map)
 {
-	int	i;
-	int	flag;
+	int		n;
+	int		ni;
+	int		loc;
+	char	let;
 
-	i = 0;
-	flag = 0;
-	while (map->mapstr[i] != '\0')
+	ni = 0;
+	counter = 0;
+	loc = mino->location;
+	let = mino->letter;
+	while ((mino->minostr)[ni])
 	{
-		if (map->mapstr[i] == letter + 'A')
+		n = mod_num(map->mapsize, to_int(mino->minostr[ni]));
+		if ((map->mapstr)[loc + n] == let)
 		{
-			map->mapstr[i] = '.';
-			flag++;
+			(map->mapstr)[loc + n] = '.';
+			counter++;
 		}
-		i++;
+		ni++;
 	}
-	return (flag == 4);
+	mino->location = -1;
+	if (counter = 4)
+		return (loc);
+	else
+		return (0);
 }

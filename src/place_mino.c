@@ -6,34 +6,34 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:27:51 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 15:53:54 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/19 20:15:53 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	place_mino(const char *mino, t_map *map, int i, int letter)
+int	place_mino(t_mino *mino, t_map *map, int i)
 {
-	int		n1;
-	int		n2;
-	int		n3;
-	int		n4;
+	int		n;
+	int		ni;
 
-	if (ft_strchr(map->mapstr, letter + 'A'))
+	ni = 0;
+	counter = 0;
+	if (ft_strchr(map->mapstr, mino->letter))
 		return (0);
-	n1 = mod_num(map->mapsize, to_int(mino[0]));
-	n2 = mod_num(map->mapsize, to_int(mino[1]));
-	n3 = mod_num(map->mapsize, to_int(mino[2]));
-	n4 = mod_num(map->mapsize, to_int(mino[3]));
-	if (n1 < 0 || n2 < 0 || n3 < 0 || n4 < 0)
-		return (-1);
-	if ((map->mapstr)[i + n1] == '.' && (map->mapstr)[i + n2] == '.' &&
-			(map->mapstr)[i + n3] == '.' && (map->mapstr)[i + n4] == '.')
+	while ((mino->minostr)[ni])
 	{
-		(map->mapstr)[i + n1] = letter + 'A';
-		(map->mapstr)[i + n2] = letter + 'A';
-		(map->mapstr)[i + n3] = letter + 'A';
-		(map->mapstr)[i + n4] = letter + 'A';
+		n = mod_num(map->mapsize, to_int(mino->minostr[ni]));
+		if ((map->mapstr)[i + n] == '.')
+		{
+			(map->mapstr)[i + n] = mino->letter;
+			counter++;
+		}
+		ni++;
+	}
+	if (counter = 4)
+	{
+		mino->location = i;
 		return (1);
 	}
 	else
