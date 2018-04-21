@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 05:15:37 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/21 00:55:45 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/21 16:07:04 by ssnelgro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,24 @@ static int	check_map(t_mino **mino, t_map *map, int index, int num_mino)
 
 	if (num_mino == map->num_mino)
 		return (1);
+	if (index == MAP_AREA)
+		return (0);
 	x = 0;
 	while (x < map->num_mino) 
 	{
-		if (place_mino(mino[x], map, x))
+		if ((mino[x])->location == -1)
 		{
-			if (check_map(mino, map, index + 1, num_mino + 1))
-				return (1);
-			else
+			if (place_mino(mino[x], map, x))
 			{
-				unplace_mino(mino[x], map);
+				if (check_map(mino, map, index + 1, num_mino + 1))
+					return (1);
+				else
+				{
+					unplace_mino(mino[x], map);
+				}
 			}
 		}
-		++x;
+		x++;
 	}
 	return (0);
 }
