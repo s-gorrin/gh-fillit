@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:59:30 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:43:30 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/20 23:04:58 by ssnelgro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_mino **get_mino_array(char **minolist, int num_minos)
 	minoarr = ft_memalloc(sizeof(t_mino *) * num_minos + 1);
 	while (minolist[index])
 	{
-		minoarr[index] = createmino(*minolist, index);
+		minoarr[index] = createmino(minolist[index], index);
 		index++;
 	}
 	minoarr[index] = NULL;
