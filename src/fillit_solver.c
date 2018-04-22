@@ -41,4 +41,5 @@ void		fillit_solver(char **mino_list, t_map *initmap)
 	while (check_map(mino, map, 0) == 0)
 		map = new_map_plus_one(map);
 	ft_putendl(map->mapstr);
+//    ft_fillit_cleanup(map, mino);
 }
