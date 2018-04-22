@@ -46,6 +46,7 @@ typedef struct	s_map
 	char		*mapstr;
 	int			mapsize;
 	int			num_mino;
+    int         placed_minos;
 }				t_map;
 /*
 ** Reading in

@@ -27,6 +27,7 @@ t_map	*createmap(void)
 	map->mapstr = NULL;
 	map->mapsize = 0;
 	map->num_mino = 0;
+    map->placed_minos = 0;
 	return (map);
 }
 
