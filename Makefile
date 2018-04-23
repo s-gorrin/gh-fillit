@@ -9,6 +9,7 @@ FILES +=	src/mino_id.c	src/check_place_mino.c	src/file_to_mino_list.c	src/fillit
 			src/unplace_mino.c	src/check_tools.c src/verify_input.c
 
 LIBFT := libft/libft.a
+DEBUG := -g
 .PHONY: clean fclean re
 
 all: $(NAME)
@@ -16,6 +17,10 @@ all: $(NAME)
 $(NAME):
 	@$(CC) $(CFLAGS) $(FILES) $(LIBFT) -o $(NAME)
 	@echo "\033[32m[ executable $(NAME) created ( ͡° ͜ʖ ͡°) ]\033[0m"
+
+debug:
+	@$(CC) $(CFLAGS) $(FILES) $(LIBFT) -o $(NAME) $(DEBUG)
+	@echo "\033[32m[ executable with debugging: $(NAME) created ( ͡° ͜ʖ ͡°) ]\033[0m"
 
 clean:
 	@rm -rf $(NAME)
