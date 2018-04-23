@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:25:34 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 14:33:06 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/23 12:16:51 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	to_int(char hex)
 
 int	mod_num(int line_len, int num)
 {
+	if (line_len == 2)
+		if (num == 5 || num == 6)
+			return (num - 2);
 	if (line_len == 3)
 	{
 		if (num >= 5 && num <= 7)
@@ -49,9 +52,9 @@ int	mod_num(int line_len, int num)
 		if (num >= 5 && num <= 7)
 			return (num + (line_len - 4));
 		if (num == 10 || num == 11)
-			return (num + (line_len - 3));
+			return ((num - 10) + ((line_len + 1) * 2));
 		if (num == 15)
-			return (num + (line_len - 2));
+			return ((line_len + 1) * 3);
 	}
 	else
 		return (num);

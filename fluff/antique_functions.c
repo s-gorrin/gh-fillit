@@ -142,3 +142,30 @@ int	place_mino(t_mino *mino, t_map *map, int i)
 }
 */
 
+
+//From check_tools
+//
+/*
+int	mod_num(int line_len, int num)
+{
+	if (line_len == 3)
+	{
+		if (num >= 5 && num <= 7)
+			return (num - 1);
+		if (num == 10 || num == 11)
+			return (num - 2);
+	}
+	if (line_len > 4)
+	{
+		if (num >= 5 && num <= 7)
+			return (num + (line_len - 4));
+		if (num == 10 || num == 11)
+			return (num + (line_len - 2));
+		if (num == 15)
+			return (num + (line_len - 0));
+	}
+	else
+		return (num);
+	return (num);
+}
+*/
