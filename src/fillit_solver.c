@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 05:15:37 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/21 16:07:04 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/23 16:31:53 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void		fillit_solver(char **mino_list, t_map *initmap)
 	update_mapstr(ft_sqrt_cl(map->num_mino * 4), map);
 	while (check_map(mino, map, 0) == 0)
 		map = new_map_plus_one(map);
-	ft_putendl(map->mapstr);
+	ft_putstr(map->mapstr);
 //    ft_fillit_cleanup(map, mino);
 }

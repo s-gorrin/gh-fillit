@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:00 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:48:58 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/23 16:37:06 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int				verify_input(char const *minostr)
 		ret = char_checker(minostr, index, count);
 		index++;
 	}
+	free(count);
 	return (ret > 0 ? ret : 0);
 }
