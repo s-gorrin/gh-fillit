@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:52:52 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:37:00 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/23 16:26:41 by snake            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ char	*file_to_str(char *filepath)
 	char	*minofile;
 	char	buf[BUFF_SIZE + 1];
 
-	if (!(fd = open(filepath, O_RDONLY)))
+	if ((fd = open(filepath, O_RDONLY)) == -1)
 		return (NULL);
-	if (!(ret = read(fd, buf, BUFF_SIZE)))
+	if ((ret = read(fd, buf, BUFF_SIZE)) == -1)
 		return (NULL);
 	minofile = ft_strnew(ret);
 	ft_memcpy(minofile, buf, ret);
