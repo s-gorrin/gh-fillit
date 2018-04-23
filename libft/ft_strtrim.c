@@ -25,11 +25,9 @@ char		*ft_strtrim(char const *s)
 	char	*r;
 	int		start;
 	int		end;
-	int		i;
 
 	start = 0;
 	end = 0;
-	i = 0;
 	if (!s)
 		return (NULL);
 	while (ft_isspace_trim(s[start]))
