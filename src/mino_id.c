@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 15:57:26 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/23 00:17:39 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static char	*one_first(char *mstr, int i)
 		return ("1256\0");
 	if (mstr[i + 5] == '#' && mstr[i + 6] == '#')
 		return ("0156\0");
-	if (mstr[1 + 5] == '#' && mstr[i + 10] == '#')
+	if (mstr[i + 5] == '#' && mstr[i + 10] == '#')
 		return ("015A\0");
 	if (mstr[i + 6] == '#' && mstr[i + 7] == '#')
 		return ("0167\0");
-	if (mstr[1 + 6] == '#' && mstr[i + 11] == '#')
+	if (mstr[i + 6] == '#' && mstr[i + 11] == '#')
 		return ("016B\0");
 	else
 		return (NULL);
@@ -108,7 +108,8 @@ char		*mino_id(char *minostr)
 		i++;
 	if (minostr[i + 1] == '#')
 		ret = one_first(minostr, i);
-	else if (minostr[i + 3] == '#')
+	else if (minostr[i + 3] == '#' && minostr[i + 4] == '#'
+			&& minostr[i + 5] == '#')
 		return ("2567\0");
 	else if (minostr[i + 4] == '#')
 		ret = four_first(minostr, i);
