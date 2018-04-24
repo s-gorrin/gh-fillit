@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:52:52 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/23 16:26:41 by snake            ###   ########.fr       */
+/*   Updated: 2018/04/24 14:21:30 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	**file_to_mino_list(char *filepath, int *num_mino)
 	if (!*num_mino)
 		return (NULL);
 	mino_list = minofile_minostr_check(mino_file_str, *num_mino);
+	ft_strdel(mino_file_str); // THIS IS WHERE A FREE WAS ADDED
 	if (mino_list)
 		return (mino_list);
 	else
