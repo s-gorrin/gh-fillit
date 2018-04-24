@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/19 22:39:19 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/23 17:06:58 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,6 @@ int				get_num_minos(char **minosstr);
 */
 int				mod_num(int line_len, int num);
 int				to_int(char hex);
+
+void			fillit_cleanup(t_map *map, t_mino **mino);
 #endif
