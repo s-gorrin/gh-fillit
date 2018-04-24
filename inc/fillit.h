@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/23 17:06:58 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/24 14:18:25 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	s_map
 	char		*mapstr;
 	int			mapsize;
 	int			num_mino;
-    int         placed_minos;
+    int			placed_minos;
 }				t_map;
 /*
 ** Reading in
@@ -89,4 +89,5 @@ int				mod_num(int line_len, int num);
 int				to_int(char hex);
 
 void			fillit_cleanup(t_map *map, t_mino **mino);
+
 #endif
