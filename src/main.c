@@ -32,7 +32,7 @@ static int	ft_error(void)
 
 int			main(int argc, char **argv)
 {
-	char	**minostr;
+	t_mino	**minostr;
 	int		num_mino;
 	t_map	*map;
 

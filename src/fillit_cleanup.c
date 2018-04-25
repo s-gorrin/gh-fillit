@@ -11,24 +11,21 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 void	fillit_cleanup(t_map *map, t_mino **mino)
 {
-	t_mino *current;
-	t_mino *tmp;
-	int count;
+    int count;
+    int i;
 
-	count = map->num_mino;
-	current = *mino;
-	tmp = NULL;
-	while (count)
-	{
-		tmp = current;
-		current++;
-		free(tmp);
-		count--;
-	}
-
+    count = map->num_mino;
+    i = 0;
+    while (i < count)
+    {
+        free(mino[i]);
+        i++;
+    }
+    free(mino);
 	free(map->mapstr);
 	free(map);
 }

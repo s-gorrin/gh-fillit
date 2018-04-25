@@ -19,21 +19,37 @@
 ** @Return: number of bytes read by read call
 */
 
-char	**file_to_mino_list(char *filepath, int *num_mino)
+/*
+static void     ft_free_array(char **arr)
+{
+    int i;
+
+    i = 0;
+    while (arr[i] != NULL)
+    {
+        free(&(arr[i]));
+        i++;
+    }
+}
+*/
+
+t_mino	**file_to_mino_list(char *filepath, int *num_mino)
 {
 	char	*mino_file_str;
 	char	**mino_list;
+    t_mino  **t_mino_list;
 
 	mino_file_str = file_to_str(filepath);
 	if (!mino_file_str)
 		return (NULL);
 	*num_mino = verify_input(mino_file_str);
-	if (!*num_mino)
+	if (!(*num_mino))
 		return (NULL);
 	mino_list = minofile_minostr_check(mino_file_str, *num_mino);
+    t_mino_list = get_mino_array(mino_list, *num_mino);
 	ft_strdel(&mino_file_str); // THIS IS WHERE A FREE WAS ADDED
-	if (mino_list)
-		return (mino_list);
+	if (t_mino_list)
+		return (t_mino_list);
 	else
 		return (NULL);
 }
@@ -64,7 +80,7 @@ char	**minofile_minostr_check(char *mino_file_str, int num_minos)
 
 	index = 0;
 	mino_list_i = 0;
-	mino_list = (char **)ft_memalloc(num_minos + 1);
+	mino_list = (char **)malloc(num_minos + 1);
 	if (!mino_list)
 		return (NULL);
 	while (mino_file_str[index])

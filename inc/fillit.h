@@ -51,7 +51,7 @@ typedef struct	s_map
 /*
 ** Reading in
 */
-char			**file_to_mino_list(char *file, int *num_mino);
+t_mino			**file_to_mino_list(char *file, int *num_mino);
 char			*file_to_str(char *filepath);
 //int				mino_file_str_verif(char *mino_file_str);
 //int				verify_char_counts(int dots, int hases, int nls, int num_minos);
@@ -64,7 +64,7 @@ char			*mino_id(char *minostr);
 */
 int				place_mino(t_mino *mino, t_map *map, int i);
 int				unplace_mino(t_mino *mino, t_map *map);
-void			fillit_solver(char **mino_list, t_map *map);
+void			fillit_solver(t_mino **mino_list, t_map *map);
 
 /*
 ** Map
