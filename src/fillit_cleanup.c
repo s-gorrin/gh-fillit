@@ -11,17 +11,15 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 void	fillit_cleanup(t_map *map, t_mino **mino)
 {
-    int count;
     int i;
 
-    count = map->num_mino;
     i = 0;
-    while (i < count)
+    while (i < map->num_mino)
     {
+        ft_strdel(&(mino[i]->minostr));
         free(mino[i]);
         i++;
     }

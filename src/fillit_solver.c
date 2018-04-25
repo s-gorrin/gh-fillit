@@ -39,5 +39,4 @@ void		fillit_solver(t_mino **mino, t_map *initmap)
 	while (check_map(mino, map, 0) == 0)
 		map = new_map_plus_one(map);
 	ft_putstr(map->mapstr);
-    fillit_cleanup(map, mino);
 }

@@ -19,37 +19,21 @@
 ** @Return: number of bytes read by read call
 */
 
-/*
-static void     ft_free_array(char **arr)
-{
-    int i;
-
-    i = 0;
-    while (arr[i] != NULL)
-    {
-        free(&(arr[i]));
-        i++;
-    }
-}
-*/
-
-t_mino	**file_to_mino_list(char *filepath, int *num_mino)
+t_mino	**file_to_mino_list(char *filepath, t_map *map)
 {
 	char	*mino_file_str;
-	char	**mino_list;
-    t_mino  **t_mino_list;
+    t_mino  **mino_list;
 
 	mino_file_str = file_to_str(filepath);
 	if (!mino_file_str)
 		return (NULL);
-	*num_mino = verify_input(mino_file_str);
-	if (!(*num_mino))
+	map->num_mino = verify_input(mino_file_str);
+	if (!(map->num_mino))
 		return (NULL);
-	mino_list = minofile_minostr_check(mino_file_str, *num_mino);
-    t_mino_list = get_mino_array(mino_list, *num_mino);
+	mino_list = minofile_minostr_check(mino_file_str, map->num_mino);
 	ft_strdel(&mino_file_str); // THIS IS WHERE A FREE WAS ADDED
-	if (t_mino_list)
-		return (t_mino_list);
+	if (mino_list)
+		return (mino_list);
 	else
 		return (NULL);
 }
@@ -71,16 +55,16 @@ char	*file_to_str(char *filepath)
 	return (minofile);
 }
 
-char	**minofile_minostr_check(char *mino_file_str, int num_minos)
+t_mino	**minofile_minostr_check(char *mino_file_str, int num_minos)
 {
-	char	**mino_list;
+	t_mino	**mino_list;
 	char	*tmp;
 	int		index;
 	int		mino_list_i;
 
 	index = 0;
 	mino_list_i = 0;
-	mino_list = (char **)malloc(num_minos + 1);
+	mino_list = (t_mino **)ft_memalloc(sizeof(*mino_list) * (num_minos + 1));
 	if (!mino_list)
 		return (NULL);
 	while (mino_file_str[index])
@@ -88,7 +72,7 @@ char	**minofile_minostr_check(char *mino_file_str, int num_minos)
 		tmp = mino_id(&mino_file_str[index]);
 		if (!tmp)
 			return (NULL);
-		mino_list[mino_list_i] = tmp;
+        mino_list[mino_list_i] = createmino(tmp, mino_list_i);
 		index += MINO_STR_LEN;
 		mino_list_i++;
 	}

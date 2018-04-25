@@ -22,19 +22,3 @@ t_mino	*createmino(char *minosstr, int index)
 	mino->letter = index + 'A';
 	return (mino);
 }
-
-t_mino **get_mino_array(char **minolist, int num_minos)
-{
-	t_mino **minoarr;
-	int index;
-
-	index = 0;
-	minoarr = ft_memalloc(sizeof(t_mino *) * num_minos + 1);
-	while (minolist[index])
-	{
-		minoarr[index] = createmino(minolist[index], index);
-		index++;
-	}
-	minoarr[index] = NULL;
-	return (minoarr);
-}

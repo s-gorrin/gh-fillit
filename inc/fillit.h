@@ -51,12 +51,12 @@ typedef struct	s_map
 /*
 ** Reading in
 */
-t_mino			**file_to_mino_list(char *file, int *num_mino);
+t_mino			**file_to_mino_list(char *file, t_map *map);
 char			*file_to_str(char *filepath);
 //int				mino_file_str_verif(char *mino_file_str);
 //int				verify_char_counts(int dots, int hases, int nls, int num_minos);
 int				verify_input(char const *minostr);
-char 			**minofile_minostr_check(char *mino_file_str, int num_minos);
+t_mino 			**minofile_minostr_check(char *mino_file_str, int num_minos);
 char			*mino_id(char *minostr);
 
 /*
@@ -79,7 +79,6 @@ void			update_mapstr(int size, t_map *map);
 ** Mino
 */
 t_mino			*createmino(char *minosstr, int index);
-t_mino			**get_mino_array(char **minolist, int num_minos);
 int				get_num_minos(char **minosstr);
 
 /*

@@ -32,20 +32,18 @@ static int	ft_error(void)
 
 int			main(int argc, char **argv)
 {
-	t_mino	**minostr;
-	int		num_mino;
+	t_mino	**mino;
 	t_map	*map;
 
-	num_mino = 0;
 	map = createmap();
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit source_file\n");
 		return (0);
 	}
-	if ((minostr = file_to_mino_list(argv[1], &num_mino)) == NULL)
+	if ((mino = file_to_mino_list(argv[1], map)) == NULL)
 		return (ft_error());
-	map->num_mino = num_mino;
-	fillit_solver(minostr, map);
+	fillit_solver(mino, map);
+    fillit_cleanup(map, mino);
 	return (0);
 }

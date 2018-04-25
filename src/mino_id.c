@@ -104,7 +104,7 @@ char		*mino_id(char *minostr)
 	i = 0;
 //	if (!(ret = (char *)malloc(sizeof(*ret) * 5)))
 //		return (NULL);
-	ret = ft_strnew(5);
+	ret = ft_strnew(4);
 //	ret = NULL;
 	while (minostr[i] != '#')
 		i++;
