@@ -9,7 +9,7 @@ FILES +=	src/mino_id.c	src/check_place_mino.c	src/file_to_mino_list.c	src/fillit
 			src/unplace_mino.c	src/check_tools.c src/verify_input.c	src/fillit_cleanup.c
 
 LIBFT := libft/libft.a
-DEBUG := -g
+DEBUG := -g -fsanitize=address
 .PHONY: clean fclean re
 
 all: $(NAME)
