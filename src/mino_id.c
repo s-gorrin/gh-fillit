@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/24 16:06:15 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/25 19:54:05 by snake            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*one_first(char *mstr, int i)
 	if (mstr[i + 6] == '#' && mstr[i + 11] == '#')
 		return ("016B");
 	else
-		return (NULL);
+		return ("\0\0\0\0");
 }
 
 /*
@@ -59,7 +59,7 @@ static char	*four_first(char *mstr, int i)
 	if (mstr[i + 5] == '#' && mstr[i + 10] == '#')
 		return ("156B");
 	else
-		return (NULL);
+		return ("\0\0\0\0");
 }
 
 /*
@@ -84,7 +84,7 @@ static char	*five_first(char *mstr, int i)
 	if (mstr[i + 10] == '#' && mstr[i + 15] == '#')
 		return ("05AF");
 	else
-		return (NULL);
+		return ("\0\0\0\0");
 }
 
 /*
@@ -118,6 +118,6 @@ char		*mino_id(char *minostr)
 	else if (minostr[i + 5] == '#')
 		ret = ft_strcpy(ret, five_first(minostr, i));
 	else
-		return (NULL);
+		return ("\0\0\0\0");
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:52:52 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/24 14:50:35 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/25 19:56:59 by snake            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_mino	**minofile_minostr_check(char *mino_file_str, int num_minos)
 	while (mino_file_str[index])
 	{
 		tmp = mino_id(&mino_file_str[index]);
-		if (!tmp)
+		if (*tmp == '\0')
 			return (NULL);
         mino_list[mino_list_i] = createmino(tmp, mino_list_i);
 		index += MINO_STR_LEN;
