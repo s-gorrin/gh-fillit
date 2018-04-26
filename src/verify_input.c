@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:00 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/23 16:37:06 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/25 01:57:46 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_count	*count_init(void)
 
 static int		verify_char_counts(int dots, int hashes, int nls, int num_minos)
 {
-	if (nls % MINO_STR_NL != 0)
+	if ((nls + 1) % MINO_STR_NL != 0)
 		return (0);
 	if (dots % MINO_STR_DOTS != 0)
 		return (0);
@@ -60,9 +60,12 @@ static int		char_checker(char const *mino, int i, t_count *count)
 	else
 		return (0);
 	if (mino[i] == '\n' && mino[i + 1] == '\0')
+	{
+		(count->num_minos)++;
 		return (verify_char_counts(count->dots, count->hashes,
 			count->nls, count->num_minos));
-		return (-1);
+	}
+	return (-1);
 }
 
 /*
