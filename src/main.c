@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 18:49:01 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:45:13 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/26 15:06:26 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int			main(int argc, char **argv)
 	if ((mino = file_to_mino_list(argv[1], map)) == NULL)
 		return (ft_error());
 	fillit_solver(mino, map);
-    fillit_cleanup(map, mino);
+	fillit_cleanup(map, mino);
 	return (0);
 }

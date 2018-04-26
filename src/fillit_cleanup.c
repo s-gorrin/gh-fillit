@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 17:03:00 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/24 14:48:26 by ssnelgro         ###   ########.fr       */
+/*   Updated: 2018/04/26 15:04:12 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	fillit_cleanup(t_map *map, t_mino **mino)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (i < map->num_mino)
-    {
-        ft_strdel(&(mino[i]->minostr));
-        free(mino[i]);
-        i++;
-    }
-    free(mino);
+	i = 0;
+	while (i < map->num_mino)
+	{
+		ft_strdel(&(mino[i]->minostr));
+		free(mino[i]);
+		i++;
+	}
+	free(mino);
 	free(map->mapstr);
 	free(map);
 }

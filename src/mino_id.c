@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:55:27 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/25 19:54:05 by snake            ###   ########.fr       */
+/*   Updated: 2018/04/26 15:06:41 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,7 @@ char		*mino_id(char *minostr)
 	char	*ret;
 
 	i = 0;
-//	if (!(ret = (char *)malloc(sizeof(*ret) * 5)))
-//		return (NULL);
 	ret = ft_strnew(4);
-//	ret = NULL;
 	while (minostr[i] != '#')
 		i++;
 	if (minostr[i + 1] == '#')

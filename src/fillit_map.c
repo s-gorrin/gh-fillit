@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 16:03:34 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/19 22:41:14 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/26 15:17:27 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** @Param1: The size of the mapstr to be created.
 ** @Return: A t_map with mapstr of size, with mapsize set to size;
 */
+
 t_map	*createmap(void)
 {
 	t_map *map;
@@ -27,7 +28,7 @@ t_map	*createmap(void)
 	map->mapstr = NULL;
 	map->mapsize = 0;
 	map->num_mino = 0;
-    map->placed_minos = 0;
+	map->placed_minos = 0;
 	return (map);
 }
 

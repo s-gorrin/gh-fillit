@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 16:52:52 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/25 19:56:59 by snake            ###   ########.fr       */
+/*   Updated: 2018/04/26 15:08:35 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 t_mino	**file_to_mino_list(char *filepath, t_map *map)
 {
 	char	*mino_file_str;
-    t_mino  **mino_list;
+	t_mino	**mino_list;
 
 	mino_file_str = file_to_str(filepath);
 	if (!mino_file_str)
@@ -31,7 +31,7 @@ t_mino	**file_to_mino_list(char *filepath, t_map *map)
 	if (!(map->num_mino))
 		return (NULL);
 	mino_list = minofile_minostr_check(mino_file_str, map->num_mino);
-	ft_strdel(&mino_file_str); // THIS IS WHERE A FREE WAS ADDED
+	ft_strdel(&mino_file_str);
 	if (mino_list)
 		return (mino_list);
 	else
@@ -72,7 +72,7 @@ t_mino	**minofile_minostr_check(char *mino_file_str, int num_minos)
 		tmp = mino_id(&mino_file_str[index]);
 		if (*tmp == '\0')
 			return (NULL);
-        mino_list[mino_list_i] = createmino(tmp, mino_list_i);
+		mino_list[mino_list_i] = createmino(tmp, mino_list_i);
 		index += MINO_STR_LEN;
 		mino_list_i++;
 	}
