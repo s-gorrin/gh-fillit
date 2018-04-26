@@ -6,7 +6,7 @@
 /*   By: ssnelgro <ssnelgro@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:12:07 by ssnelgro          #+#    #+#             */
-/*   Updated: 2018/04/25 20:03:27 by snake            ###   ########.fr       */
+/*   Updated: 2018/04/26 15:57:42 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,15 @@ typedef struct	s_map
 	char		*mapstr;
 	int			mapsize;
 	int			num_mino;
-    int			placed_minos;
+	int			placed_minos;
 }				t_map;
 /*
 ** Reading in
 */
 t_mino			**file_to_mino_list(char *file, t_map *map);
 char			*file_to_str(char *filepath);
-//int				mino_file_str_verif(char *mino_file_str);
-//int				verify_char_counts(int dots, int hases, int nls, int num_minos);
-int				verify_input(char const *minostr);
-t_mino 			**minofile_minostr_check(char *mino_file_str, int num_minos);
+int				verify_input(char const *mino_file_str);
+t_mino			**minofile_minostr_check(char *mino_file_str, int num_minos);
 char			*mino_id(char *minostr);
 
 /*

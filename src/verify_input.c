@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   verify_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ssnelgro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/19 15:13:00 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/25 20:56:48 by snake            ###   ########.fr       */
+/*   Created: 2018/04/26 15:37:46 by ssnelgro          #+#    #+#             */
+/*   Updated: 2018/04/26 15:57:04 by sgorrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-static t_count	*count_init(void)
-{
-	t_count *count;
-
-	count = (t_count *)ft_memalloc(sizeof(t_count));
-	count->hashes = 0;
-	count->dots = 0;
-	count->nls = 0;
-	count->num_minos = 0;
-	return (count);
-}
 
 static int		verify_char_counts(int dots, int hashes, int nls, int num_minos)
 {
@@ -39,14 +27,6 @@ static int		verify_char_counts(int dots, int hashes, int nls, int num_minos)
 	return (num_minos);
 }
 
-/*
-** @Function: checks a char mino[index] to see if it's valid, counts vars:
-** hashes, chars (per line), new line characters.
-** @Param1: string containing the char to be checked.
-** @Param2: index of the char to be checked.
-** @Return: 0 for invalidating element, 1 for valid mino, 2 for valid char.
-*/
-
 static int		char_checker(char const *mino, int i, t_count *count)
 {
 	if (mino[i] == '.')
@@ -54,14 +34,10 @@ static int		char_checker(char const *mino, int i, t_count *count)
 	else if (mino[i] == '#')
 		(count->hashes)++;
 	else if (mino[i] == '\n')
-	{
 		(count->nls)++;
-		if (mino[i + 1] == '\n')
-			(count->num_minos)++;
-	}
 	else
 		return (0);
-	if (mino[i] == '\n' && mino[i + 1] == '\0')
+	if (mino[i] == '\n' && (mino[i + 1] == '\0' || mino[i + 1] == '\n'))
 	{
 		(count->num_minos)++;
 		return (verify_char_counts(count->dots, count->hashes,
@@ -70,29 +46,55 @@ static int		char_checker(char const *mino, int i, t_count *count)
 	return (-1);
 }
 
-/*
-** @Function: checks to see if an input mino string is valid format, including:
-** four lines of four chars, limited to '.'s and '#'s, and four total '#'s
-** and five total newline characters.
-** @Param1: minostring to be checked.
-** @Param2: index of start of mino to be checked.
-** @Return: returns 1 for valid mino format or 0 for anything invalid.
-*/
-
-int				verify_input(char const *minostr)
+static t_count	*count_init(void)
 {
-	int		index;
-	int		ret;
 	t_count	*count;
 
-	index = 0;
-	ret = -1;
-	count = count_init();
-	while (minostr[index] != '\0' && ret == -1)
+	count = (t_count *)ft_memalloc(sizeof(t_count));
+	if (!count)
+		return (NULL);
+	count->hashes = 0;
+	count->dots = 0;
+	count->nls = 0;
+	count->num_minos = 0;
+	return (count);
+}
+
+static int		single_mino_check(char const *mino_file_str, int index)
+{
+	int		end;
+	t_count	*counter;
+
+	counter = count_init();
+	end = index + 20;
+	while (index < end)
 	{
-		ret = char_checker(minostr, index, count);
+		if (!char_checker(mino_file_str, index, counter))
+			return (0);
 		index++;
 	}
-	free(count);
-	return (ret > 0 ? ret : 0);
+	free(counter);
+	return (1);
+}
+
+int				verify_input(char const *mino_file_str)
+{
+	int	index;
+	int	num_mino;
+
+	num_mino = 0;
+	index = 0;
+	while (mino_file_str[index])
+	{
+		if (!(single_mino_check(mino_file_str, index)))
+			return (0);
+		num_mino++;
+		if (mino_file_str[index + 20] == '\n')
+			index += 21;
+		else if (!(mino_file_str[index + 20]))
+			return (num_mino);
+		else
+			return (0);
+	}
+	return (0);
 }
