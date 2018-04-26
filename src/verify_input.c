@@ -6,7 +6,7 @@
 /*   By: sgorrin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 15:13:00 by sgorrin           #+#    #+#             */
-/*   Updated: 2018/04/25 01:57:46 by sgorrin          ###   ########.fr       */
+/*   Updated: 2018/04/25 20:56:48 by snake            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ static int		verify_char_counts(int dots, int hashes, int nls, int num_minos)
 {
 	if ((nls + 1) % MINO_STR_NL != 0)
 		return (0);
-	if (dots % MINO_STR_DOTS != 0)
+	if (dots % MINO_STR_DOTS != 0 || dots != (MINO_STR_DOTS * num_minos))
 		return (0);
-	if (hashes % MINO_STR_HASH != 0)
+	if (hashes % MINO_STR_HASH != 0 || hashes != (MINO_STR_HASH * num_minos))
 		return (0);
 	if (num_minos > MAX_MINOS || num_minos < 1)
+		return (0);
+	if ((hashes + dots) % ONE_PIECE != 0)
 		return (0);
 	return (num_minos);
 }
